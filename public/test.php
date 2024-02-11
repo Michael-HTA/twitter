@@ -11,4 +11,5 @@ use App\Services\LoginService;
 
 
 $test = new LoginController(new LoginService);
-$test->login();
+$result = $test->login();
+var_dump($result);
