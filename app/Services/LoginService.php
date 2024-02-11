@@ -3,7 +3,7 @@ namespace App\Services;
 
 error_reporting(E_ALL);
 ini_set('display_errors',1);
-require_once("../Interface/LoginInterface.php");
+require_once __DIR__."/../Interface/LoginInterface.php";
 
 use App\Interface\LoginInterface;
 
@@ -15,7 +15,7 @@ class LoginService implements LoginInterface{
         
         $email_filter = filter_var($email,FILTER_VALIDATE_EMAIL);
 
-        echo "$email_filter and $passowrd";
+        echo "$email_filter and $password";
 
     }
 
@@ -28,8 +28,3 @@ class LoginService implements LoginInterface{
     }
 }
 
-
-$obj = new LoginService();
-$obj->login();
-$obj->logout();
-$obj->register();
