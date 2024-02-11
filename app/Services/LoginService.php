@@ -14,7 +14,8 @@ use Database\MySQL;
 
 class LoginService implements LoginInterface{
 
-    public function login(){
+    public function login():mixed
+    {
         $db = new UsersTable(new MySQL);
 
         $email = $_POST['email'];
@@ -24,15 +25,9 @@ class LoginService implements LoginInterface{
         $email_filter = filter_var($email,FILTER_VALIDATE_EMAIL);
 
         $user = $db->findByEmailAndPassword($email_filter,$password);
-
-        if($user){
-            return "hello world";
-        }else{
-            return "NO No No";
-        }
-
-
-
+        
+        // var_dump(gettype($user));
+        return $user;
     }
 
     public function logout(){

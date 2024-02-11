@@ -18,7 +18,7 @@ class LoginController{
         $this->login = $obj;
     }
 
-    public function login(){
-        $this->login->login();
+    public function login():mixed{
+        return $this->login->login();
     }
 }
