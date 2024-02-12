@@ -39,7 +39,7 @@
 		<?php endif ?>
 
 		<form action="test.php" method="post">
-			<!-- <input type="text" name="name" class="form-control mb-2" placeholder="name" required> -->
+			<input type="text" name="name" class="form-control mb-2" placeholder="name" required>
 			<input type="email" name="email" class="form-control mb-2" placeholder="Email" required>
 
 			<input type="password" name="password" class="form-control mb-2" placeholder="Password" required>

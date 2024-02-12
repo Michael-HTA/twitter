@@ -9,8 +9,10 @@ use PDOException;
 class SQLite implements DatabaseInterface{
 
     private $db;
+    // problem is "\" it escape the t
+    private $db_path = "D:\Learning\Programming\databases\\twitter.db";
 
-    public function __construct(private $dbPath)
+    public function __construct()
     {
     }
 
@@ -18,7 +20,7 @@ class SQLite implements DatabaseInterface{
 
         try{
 
-            $this->db = new PDO("sqlite:$this->dbPath");
+            $this->db = new PDO("sqlite:$this->db_path");
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 
