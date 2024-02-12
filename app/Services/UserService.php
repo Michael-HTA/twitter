@@ -3,16 +3,16 @@ namespace App\Services;
 
 error_reporting(E_ALL);
 ini_set('display_errors',1);
-require_once __DIR__."/../Interface/LoginInterface.php";
+require_once __DIR__."/../Interface/UserInterface.php";
 require_once __DIR__."/../Database/MySQL.php";
 require_once __DIR__."/../Database/UsersTable.php";
 
-use App\Interface\LoginInterface;
+use App\Interface\UserInterface;
 use Database\UsersTable;
 use Database\MySQL;
 
 
-class LoginService implements LoginInterface{
+class UserService implements UserInterface{
 
     public function login(){
 
@@ -26,7 +26,7 @@ class LoginService implements LoginInterface{
 
         $user = $db->findByEmailAndPassword($email_filter,$password);
 
-        return "hell world";
+        return $user;
 
 
 
@@ -50,8 +50,8 @@ class LoginService implements LoginInterface{
 
         $data = [
             "name" => $name,
-            "$email" => $email,
-            "$password" => $hash_password,
+            "email" => $email_filter,
+            "password" => $hash_password,
         ];
         
         return $db->storeUser($data);

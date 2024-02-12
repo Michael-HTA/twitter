@@ -1,16 +1,18 @@
 <?php
 namespace Database;
 
+require_once __DIR__."/../Interface/DatabaseInterface.php";
+use App\Interface\DatabaseInterface;
 use PDO;
 use PDOException;
 
-class MySQL{
+class MySQL implements DatabaseInterface{
     private $db;
 
     public function __construct(
         // setting default values if user does not give parameter values
         private $dbhost = "localhost",
-        private $dbname = "project",
+        private $dbname = "twitter",
         private $dbuser = "root",
         private $dbpass = "",
     ) 

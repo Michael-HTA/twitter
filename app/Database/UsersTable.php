@@ -1,10 +1,13 @@
 <?php
 namespace Database;
 
+require_once __DIR__."/../Interface/DatabaseInterface.php";
+use App\Interface\DatabaseInterface;
+
 class UsersTable{
     private $db;
 
-    public function __construct(MySQL $mysql)
+    public function __construct(DatabaseInterface $mysql)
     {
         $this->db = $mysql->connect();
     }
