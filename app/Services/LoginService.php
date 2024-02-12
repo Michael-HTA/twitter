@@ -14,9 +14,9 @@ use Database\MySQL;
 
 class LoginService implements LoginInterface{
 
-    public function login():mixed
-    {
-        $db = new UsersTable(new MySQL);
+    public function login(){
+
+        $db = new UsersTable(new MySQL());
 
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -25,17 +25,37 @@ class LoginService implements LoginInterface{
         $email_filter = filter_var($email,FILTER_VALIDATE_EMAIL);
 
         $user = $db->findByEmailAndPassword($email_filter,$password);
-        
-        // var_dump(gettype($user));
-        return $user;
+
+        return "hell world";
+
+
+
     }
 
     public function logout(){
-        echo "logout";
+        return  "logout";
     }
 
     public function register(){
-        echo "register";
+
+        $db = new UsersTable(new MySQL());
+
+        $name = $_POST["name"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+
+        //validation
+        $email_filter = filter_var($email,FILTER_VALIDATE_EMAIL);
+        $hash_password = password_hash($password,PASSWORD_DEFAULT);
+
+        $data = [
+            "name" => $name,
+            "$email" => $email,
+            "$password" => $hash_password,
+        ];
+        
+        return $db->storeUser($data);
+
     }
 }
 

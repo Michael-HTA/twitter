@@ -10,5 +10,5 @@ use App\Services\LoginService;
 
 
 $test = new LoginController(new LoginService);
-$result = $test->login();
-var_dump($result->name);
+$result = $test->register();
+var_dump($result);

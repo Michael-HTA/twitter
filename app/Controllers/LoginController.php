@@ -12,13 +12,21 @@ use App\Interface\LoginInterface;
 
 
 class LoginController{
-    private $login;
+    private $obj;
 
     public function __construct(LoginInterface $obj){
-        $this->login = $obj;
+        $this->obj = $obj;
     }
 
-    public function login():mixed{
-        return $this->login->login();
+    public function login(){
+        return $this->obj->login();
+    }
+
+    public function register(){
+        return $this->obj->register();
+    }
+
+    public function logout(){
+        return $this->obj->logout();
     }
 }

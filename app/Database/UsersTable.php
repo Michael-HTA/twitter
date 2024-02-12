@@ -24,4 +24,14 @@ class UsersTable{
         }
     }
 
+    public function storeUser($data){
+
+        // return $this->db;
+        $query = "INSERT INTO users (name,email,password) VALUES (:name,:email,:password)";
+        $statement = $this->db->prepare($query);
+        $statement->execute($data);
+        return $this->db->lastInsertId();
+    }
+
+
 }
