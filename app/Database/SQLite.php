@@ -9,8 +9,9 @@ use PDOException;
 class SQLite implements DatabaseInterface{
 
     private $db;
-    // problem is "\" it escape the t
-    private $db_path = "D:\Learning\Programming\databases\\twitter.db";
+    // in window the problem is "\" it need to escape the '\t'
+    //in linux db need to put under apache server 
+    private $db_path = '/var/www/html/purephp/twitter.sqlite'; 
 
     public function __construct()
     {

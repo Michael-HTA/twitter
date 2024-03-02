@@ -43,6 +43,7 @@ class UserService implements UserInterface{
 
         // $db = new UsersTable(new MySQL());
         $db = new UsersTable(new SQLite());
+        // return $db;
 
         $name = $_POST["name"];
         $email = $_POST["email"];
