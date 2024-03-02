@@ -3,6 +3,8 @@ namespace Database;
 
 require_once __DIR__."/../Interface/DatabaseInterface.php";
 use App\Interface\DatabaseInterface;
+use PDOException;
+
 
 class UsersTable{
     private $db;
@@ -32,8 +34,13 @@ class UsersTable{
         // return $this->db;
         $query = "INSERT INTO users (name,email,password) VALUES (:name,:email,:password)";
         $statement = $this->db->prepare($query);
-        $statement->execute($data);
-        return $this->db->lastInsertId();
+        try{
+            $statement->execute($data);
+            return $this->db->lastInsertId();
+        }catch(PDOException $e){
+            return $e->getMessage();
+        }
+        
     }
 
 

@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-	<title>Login</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-	<style>
-		.wrap {
-			width: 100%;
-			max-width: 400px;
-			margin: 40px auto;
-		}
-	</style>
-</head>
-
+<?php require("components/header.php")?>
 <body class="text-center">
 	<div class="wrap">
 		<h1 class="h3 mb-3">Administration</h1>
@@ -38,7 +21,7 @@
 			</div>
 		<?php endif ?>
 
-		<form action="test.php" method="post">
+		<form action="../../public/test.php" method="post">
 			<input type="text" name="name" class="form-control mb-2" placeholder="name" required>
 			<input type="email" name="email" class="form-control mb-2" placeholder="Email" required>
 
@@ -50,10 +33,9 @@
 		</form>
 		<br>
 
-		<a href="register.php">Register</a>
+		<a href="login.php">Back</a>
 	</div>
   <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script> -->
 </body>
-
-</html>
+<?php require("components/footer.php")?>

@@ -9,5 +9,5 @@ use App\Controllers\UserController;
 use App\Services\UserService;
 
 $test = new UserController(new UserService);
-$result = $test->register();
+$result = $test->login();
 var_dump($result);
