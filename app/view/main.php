@@ -13,9 +13,23 @@
 <body>
 	<div class="container-fluid mx-0 px-0">
 		<nav class="text-center bg-primary-subtle">This is for the nav</nav>
-		<div class="container">
-			<div class="row text-center">
-				<div class="col-3 bg-primary">left session_decode</div>
+		<div class="container-fluid">
+			<div class="row mx-1">
+				<div class="col-3 bg-primary">
+					<div class="row">
+						<div class="col">
+							<div class="row">
+								<div class="col-12">
+									<div class="float-start">
+										<img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter Logo" style="width: 30px; height:30px">
+									</div>
+								</div>
+							</div>
+							<div class="bg-danger">Setting</div>
+							<div>Something</div>
+						</div>
+					</div>
+				</div>
 				<div class="col-6 bg-success">main side</div>
 				<div class="col-3 bg-danger">right side</div>
 			</div>
