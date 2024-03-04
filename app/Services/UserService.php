@@ -3,15 +3,17 @@ namespace App\Services;
 
 error_reporting(E_ALL);
 ini_set('display_errors',1);
-require_once __DIR__."/../Interface/UserInterface.php";
-require_once __DIR__."/../Database/MySQL.php";
-require_once __DIR__."/../Database/SQLite.php";
-require_once __DIR__."/../Database/UsersTable.php";
+
+// include_once(__DIR__."/../../vendor/autoload.php");
+// require_once __DIR__."/../Interface/UserInterface.php";
+// require_once __DIR__."/../Database/MySQL.php";
+// require_once __DIR__."/../Database/SQLite.php";
+// require_once __DIR__."/../Database/UsersTable.php";
 
 use App\Interface\UserInterface;
-use Database\UsersTable;
-use Database\MySQL;
-use Database\SQLite;
+use App\Database\UsersTable;
+use App\Database\MySQL;
+use App\Database\SQLite;
 
 class UserService implements UserInterface{
 

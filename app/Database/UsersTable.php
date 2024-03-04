@@ -1,7 +1,9 @@
 <?php
-namespace Database;
+namespace App\Database;
 
-require_once __DIR__."/../Interface/DatabaseInterface.php";
+// require_once __DIR__."/../Interface/DatabaseInterface.php";
+
+// include_once(__DIR__."/../../vendor/autoload.php");
 use App\Interface\DatabaseInterface;
 use PDOException;
 

@@ -1,0 +1,16 @@
+{
+    "name": "acer/twitter",
+    "authors": [
+        {
+            "name": "Michael",
+            "email": "hnthu.aung@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+
+}
