@@ -12,13 +12,14 @@ ini_set('display_errors',1);
 
 // include_once(__DIR__."/../../vendor/autoload.php");
 use App\Interface\UserInterface;
+use App\Services\UserService;
 
 
 class UserController{
     private $obj;
 
-    public function __construct(UserInterface $obj){
-        $this->obj = $obj;
+    public function __construct(){
+        $this->obj = new UserService;
     }
 
     public function login(){

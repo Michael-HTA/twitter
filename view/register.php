@@ -21,7 +21,7 @@
 			</div>
 		<?php endif ?>
 
-		<form action="../../public/test.php" method="post">
+		<form action="../public/test.php" method="post">
 			<input type="text" name="name" class="form-control mb-2" placeholder="name" required>
 			<input type="email" name="email" class="form-control mb-2" placeholder="Email" required>
 
