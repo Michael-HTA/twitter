@@ -14,9 +14,9 @@ use App\Services\RouteService;
 // echo $userController;
 // die();
 
-RouteService::get("/login",UserController::class,"login");
+RouteService::post("/login",UserController::class,"login");
 $call = new RouteService();
-var_dump($call->callCorrespondentController("/login"));
+var_dump($call->callCorrespondentController("/login","POST"));
 
 // $test = new $userController();
 // $result = $test->login();
