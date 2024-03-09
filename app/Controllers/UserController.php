@@ -19,7 +19,7 @@ class UserController{
     private $obj;
 
     public function __construct(){
-        $this->obj = new UserService;
+        $this->obj = new UserService();
     }
 
     public function login(){

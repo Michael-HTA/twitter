@@ -69,12 +69,12 @@ class RouteService{
 
     public static function put($uri,$controller,$controller_method_name){
         $regexUri = self::setRegexRoute($uri);
-        self::setMethod("PUT",$regexUri,$controller,$controller_method_name);
+        self::setMethod("POST",$regexUri,$controller,$controller_method_name);
     }
 
     public static function delete($uri,$controller,$controller_method_name){
         $regexUri = self::setRegexRoute($uri);
-        self::setMethod("DELETE",$regexUri,$controller,$controller_method_name);
+        self::setMethod("POST",$regexUri,$controller,$controller_method_name);
     }
 
 
