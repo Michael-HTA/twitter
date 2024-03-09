@@ -4,7 +4,7 @@ ini_set('display_errors',1);
 
 // include_once __DIR__."/../app/Controllers/UserController.php";
 // include_once __DIR__."/../app/Services/UserService.php";
-include_once(__DIR__."/vendor/autoload.php");
+include_once(__DIR__."/../vendor/autoload.php");
 
 use App\Controllers\UserController;
 use App\Services\UserService;
@@ -22,6 +22,15 @@ $_POST['password'] = 'admin';
 RouteService::post("/login",UserController::class,"login");
 $call = new RouteService();
 var_dump($call->callCorrespondentController("/login","POST"));
+function dd($item){
+    echo "<pre>";
+    var_dump($item);
+    echo "</pre>";
+}
+
+dd($_SERVER['REQUEST_METHOD']);
+dd($_SERVER['REQUEST_URI']);
+
 
 // $test = new $userController();
 // $result = $test->login();

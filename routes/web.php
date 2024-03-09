@@ -1,5 +1,6 @@
 <?php
-$basePath = "http://localhost/purephp";
 
-$routes = [
-];
+use App\Controllers\UserController;
+use App\Services\RouteService;
+
+RouteService::get('/login',UserController::class,'login');
