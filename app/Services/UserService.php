@@ -33,7 +33,7 @@ class UserService implements UserInterface{
         //email validation
         $filtered_email = filter_var($email,FILTER_VALIDATE_EMAIL);
         $user = $this->db->findByEmailAndPassword($filtered_email,$password);
-
+        
         return $user;
 
 

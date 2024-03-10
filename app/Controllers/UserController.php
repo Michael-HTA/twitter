@@ -23,7 +23,8 @@ class UserController{
     }
 
     public function login(){
-        return $this->obj->login();
+        $user =$this->obj->login();
+        return $user ? $user : 'Do not found ther user';
     }
 
     public function register(){

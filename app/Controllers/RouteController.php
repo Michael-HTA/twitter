@@ -13,7 +13,11 @@ class RouteController{
     }
 
     public function getUrl(){
-        return parse_url($_SERVER['REQUEST_URI'])['path'];
+
+        // return parse_url($_SERVER['REQUEST_URI'])['path'];
+        $parsed_url = parse_url($_SERVER['REQUEST_URI']);
+        return $parsed_url !== false && isset($parsed_url['path']) ? $parsed_url['path'] : null;
+ 
     }
 
     public function getHttpMethod(){
@@ -23,6 +27,6 @@ class RouteController{
     public function start(){
         $route = $this->routeService->callCorrespondentController($this->getUrl(),$this->getHttpMethod());
 
-        return $route ?? '404 Not Found!';
+        return $route ?? '404 Not Found';
     }
 }

@@ -9,17 +9,18 @@ require_once(__DIR__.'/../routes/web.php');
 
 use App\Controllers\RouteController;
 
-
+// linux test@gmail.com password
+// window admin@gmail.com admin
 
 // $userController = UserController::class;
 // echo $userController;
 // die();
 
-// $_POST['email'] = 'test@gmail.com';
-// $_POST['password'] = 'password';
+$_POST['email'] = 'test@gmail.com';
+$_POST['password'] = 'passwordsdfsdfsdf';
 
-$_POST['email'] = 'admin@gmail.com';
-$_POST['password'] = 'admin';
+// $_POST['email'] = 'admin@gmail.com';
+// $_POST['password'] = 'admin';
 
 
 $app = new RouteController();

@@ -21,20 +21,24 @@ class RouteService{
     // }
 
     public function callCorrespondentController($request,$http_method){
-        foreach(self::$routes as $key => $value){
-            if(preg_match($key,$request)){
-                if($value['http_method'] === $http_method){
-                    $controller_name = $value['controller'];
-                    $controller_method_name = $value['controller_method_name'];
-
-                    $obj = new $controller_name();
-                    $result = $obj->$controller_method_name();
-
-                    //freeing the obj (I hope so!)
-                    unset($obj);
-                    return $result;
+        if(!is_null($request)){
+            foreach(self::$routes as $key => $value){
+                if(preg_match($key,$request)){
+                    if($value['http_method'] === $http_method){
+                        $controller_name = $value['controller'];
+                        $controller_method_name = $value['controller_method_name'];
+    
+                        $obj = new $controller_name();
+                        $result = $obj->$controller_method_name();
+    
+                        //freeing the obj (I hope so!)
+                        unset($obj);
+                        return $result;
+                    }
                 }
             }
+        }else{
+            return '<h1>Please Provide Correct Uri</h1>';
         }
     }
 
