@@ -16,11 +16,17 @@ use App\Controllers\RouteController;
 // echo $userController;
 // die();
 
-$_POST['email'] = 'test@gmail.com';
-$_POST['password'] = 'passwordsdfsdfsdf';
-
-// $_POST['email'] = 'admin@gmail.com';
-// $_POST['password'] = 'admin';
+// $_POST['email'] = 'test@gmail.com';
+// $_POST['password'] = 'password';
+// header("location:http://localhost/twitter/public/index.php");
+// die();
+// exit();
+$_SERVER['REQUEST_URI'] = '/logout';
+echo '<pre>';
+var_dump($_SERVER);
+echo '</pre>';
+$_POST['email'] = 'admin@gmail.com';
+$_POST['password'] = 'admin';
 
 
 $app = new RouteController();
