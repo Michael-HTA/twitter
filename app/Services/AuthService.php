@@ -6,8 +6,8 @@ class AuthService{
 
         session_start();
 
-        if(isset($_SESSION['user'])){
-            return $_SESSION['user'];
+        if(isset($_SESSION[$user])){
+            return $_SESSION[$user];
         } else {
             RedirectService::redirect('/login');
         }

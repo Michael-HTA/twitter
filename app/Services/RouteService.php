@@ -2,7 +2,8 @@
 namespace App\Services;
 
 class RouteService{
-    private static $routes = [];
+    public static $routes = [];
+    public static $instance = null;
 
     // allCorrespondentController() => version one
     // public function callCorrespondentController($request,$http_method){
@@ -21,28 +22,51 @@ class RouteService{
     // }
 
     public function callCorrespondentController($request,$http_method){
+
+        session_start();
+
         if(!is_null($request)){
-            foreach(self::$routes as $key => $value){
-                if(preg_match($key,$request)){
-                    if($value['http_method'] === $http_method){
-                        $controller_name = $value['controller'];
-                        $controller_method_name = $value['controller_method_name'];
-    
-                        $obj = new $controller_name();
-                        $result = $obj->$controller_method_name();
-    
-                        //freeing the obj (I hope so!)
-                        unset($obj);
-                        return $result;
+            foreach(self::$routes as $route){
+                if(preg_match($route['uri'],$request)){
+                    if($route['http_method'] === $http_method){
+                        if($route['middleware'] !== null){
+                            if(isset($_SESSION[$route['middleware']])){
+
+                                $controller_name = $route['controller'];
+                                $controller_method_name = $route['controller_method_name'];
+
+                                //calling method from controller
+                                $obj = new $controller_name();
+                                $result = $obj->$controller_method_name();
+            
+                                //freeing the obj (I hope so!)
+                                unset($obj);
+                                return $result;
+
+                            } else {
+                                RedirectService::redirect('/');
+                                exit();
+                            }
+                        } else {
+
+                            $controller_name = $route['controller'];
+                            $controller_method_name = $route['controller_method_name'];
+        
+                            $obj = new $controller_name();
+                            $result = $obj->$controller_method_name();
+        
+                            //freeing the obj (I hope so!)
+                            unset($obj);
+                            return $result;
+                        }
                     }
                 }
             }
         }else{
+            //If the incoming uri is not correct this will return
             return '<h1>Please Provide Correct Uri</h1>';
         }
     }
-
-
 
 
     private static function setRegexRoute($uri){
@@ -54,32 +78,44 @@ class RouteService{
     }
     
     private static function setMethod($http_method,$uri,$controller, $controller_method_name){
-        self::$routes[$uri] = [
+        self::$routes[] = [
+            'uri' => $uri,
             'http_method' => $http_method,
             'controller' => $controller,
             'controller_method_name'=> $controller_method_name,
+            'middleware' => null,
         ];
+
+        if(self::$instance){
+            return self::$instance;
+        } else {
+            return self::$instance = new self();
+        }
     }
 
     public static function get($uri,$controller,$controller_method_name){
         $regexUri = self::setRegexRoute($uri);
-        self::setMethod("GET",$regexUri,$controller,$controller_method_name);
+        return self::setMethod("GET",$regexUri,$controller,$controller_method_name);
     }
 
     public static function post($uri,$controller,$controller_method_name){
         $regexUri = self::setRegexRoute($uri);
-        self::setMethod("POST",$regexUri,$controller,$controller_method_name);
+        return self::setMethod("POST",$regexUri,$controller,$controller_method_name);
     }
 
     public static function put($uri,$controller,$controller_method_name){
         $regexUri = self::setRegexRoute($uri);
-        self::setMethod("POST",$regexUri,$controller,$controller_method_name);
+        return self::setMethod("POST",$regexUri,$controller,$controller_method_name);
     }
 
     public static function delete($uri,$controller,$controller_method_name){
         $regexUri = self::setRegexRoute($uri);
-        self::setMethod("POST",$regexUri,$controller,$controller_method_name);
+        return self::setMethod("POST",$regexUri,$controller,$controller_method_name);
     }
 
+    public static function middleware($middleware){
+        self::$routes[array_key_last(self::$routes)]['middleware'] = $middleware;
+        // return self::$instance;
+    }
 
 }
