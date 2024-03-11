@@ -5,10 +5,11 @@ class RedirectService{
 
     private static $base_uri = 'http://localhost';
 
-    public static function redirect($path, $query = ''){
+    public static function redirect($path,$query = ""){
+        
         $uri = self::$base_uri.$path;
-        $url = isset($query) ? "$uri?$query" : $uri;
-        header("location:$url");
+        $url = strlen($query) !== 0 ? "$uri?$query" : $uri;
+        header("location: $url");
         exit();
 
     }

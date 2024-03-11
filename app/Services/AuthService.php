@@ -2,12 +2,14 @@
 namespace App\Services;
 
 class AuthService{
-    public function check($user){
+    public static function check($user){
+
         session_start();
+
         if(isset($_SESSION['user'])){
             return $_SESSION['user'];
-        } else{
-            
+        } else {
+            RedirectService::redirect('/login');
         }
     }
 }

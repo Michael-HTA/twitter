@@ -41,6 +41,8 @@ class UserService implements UserInterface{
     }
 
     public function logout(){
+        
+        RedirectService::redirect('/login');
         return  "logout";
     }
 
