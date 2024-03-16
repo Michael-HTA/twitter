@@ -22,9 +22,17 @@ class UserController{
         $this->obj = new UserService();
     }
 
+    public function index(){
+        $_SESSION['guest'] = 'guest';
+        $hello = 'Hello from the index function';
+        // var_dump($_SESSION['middleware']);
+        // die();
+        return [require_once(__DIR__.'/../../view/login.php'),$hello];
+    }
+
     public function login(){
         $user =$this->obj->login();
-        return $user ? $user : 'Do not found ther user';
+        return $user ? $user : 'no_user';
     }
 
     public function register(){

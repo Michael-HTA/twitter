@@ -23,7 +23,7 @@ class RouteService{
 
     public function callCorrespondentController($request,$http_method){
 
-        session_start();
+        // session_start();
 
         if(!is_null($request)){
             foreach(self::$routes as $route){
@@ -44,8 +44,8 @@ class RouteService{
                                 return $result;
 
                             } else {
-                                RedirectService::redirect('/');
-                                exit();
+                                //if user does not have auth
+                               return 'not_auth';
                             }
                         } else {
 
@@ -64,15 +64,15 @@ class RouteService{
             }
         }else{
             //If the incoming uri is not correct this will return
-            return '<h1>Please Provide Correct Uri</h1>';
+            return 'wrong_uri';
         }
     }
 
 
     private static function setRegexRoute($uri){
 
-        $strReplace = str_replace('/','\/',$uri);
-        $regex = preg_replace('/[{]+[A-Za-z\d]+[}]+/','[A-Za-z\d]+', $strReplace);
+        $str_replace = str_replace('/','\/',$uri);
+        $regex = preg_replace('/[{]+[A-Za-z\d]+[}]+/','[A-Za-z\d]+', $str_replace);
         $result = '/^'.$regex.'$/';
         return $result;
     }
@@ -94,28 +94,28 @@ class RouteService{
     }
 
     public static function get($uri,$controller,$controller_method_name){
-        $regexUri = self::setRegexRoute($uri);
-        return self::setMethod("GET",$regexUri,$controller,$controller_method_name);
+        $regex_uri = self::setRegexRoute($uri);
+        return self::setMethod("GET",$regex_uri,$controller,$controller_method_name);
     }
 
     public static function post($uri,$controller,$controller_method_name){
-        $regexUri = self::setRegexRoute($uri);
-        return self::setMethod("POST",$regexUri,$controller,$controller_method_name);
+        $regex_uri = self::setRegexRoute($uri);
+        return self::setMethod("POST",$regex_uri,$controller,$controller_method_name);
     }
 
     public static function put($uri,$controller,$controller_method_name){
-        $regexUri = self::setRegexRoute($uri);
-        return self::setMethod("POST",$regexUri,$controller,$controller_method_name);
+        $regex_uri = self::setRegexRoute($uri);
+        return self::setMethod("POST",$regex_uri,$controller,$controller_method_name);
     }
 
     public static function delete($uri,$controller,$controller_method_name){
-        $regexUri = self::setRegexRoute($uri);
-        return self::setMethod("POST",$regexUri,$controller,$controller_method_name);
+        $regex_uri = self::setRegexRoute($uri);
+        return self::setMethod("POST",$regex_uri,$controller,$controller_method_name);
     }
 
     public static function middleware($middleware){
         self::$routes[array_key_last(self::$routes)]['middleware'] = $middleware;
-        // return self::$instance;
+        return self::$instance;
     }
 
 }

@@ -21,7 +21,7 @@
 				Account created. Please login.
 			</div>
 		<?php endif ?>
-
+		<?php echo "<p> $hello </p>"; ?>	
 		<form action= "../public/test.php" method="post">
 			<!-- <input type="text" name="name" class="form-control mb-2" placeholder="name" required> -->
 			<input type="email" name="email" class="form-control mb-2" placeholder="Email" required>

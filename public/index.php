@@ -19,8 +19,17 @@ use App\Services\RouteService;
 // echo $userController;
 // die();
 
-// $_POST['email'] = 'test@gmail.com';
-// $_POST['password'] = 'password';
+session_start();
+
+
+
+// if(isset($_GET['message'])){
+//     $message = urldecode($_GET['message']);
+//     echo "<p> $message </p>";
+// }
+
+$_POST['email'] = 'test@gmail.com';
+$_POST['password'] = 'passwordd';
 
 
 // die();
@@ -30,8 +39,8 @@ use App\Services\RouteService;
 // var_dump($_SERVER);
 // echo '</pre>';
 
-$_POST['email'] = 'admin@gmail.com';
-$_POST['password'] = 'admin';
+// $_POST['email'] = 'admin@gmail.com';
+// $_POST['password'] = 'admin';
 
 // $stre = "";
 // var_dump(strlen($stre));
@@ -39,8 +48,8 @@ $_POST['password'] = 'admin';
 $app = new RouteController();
 var_dump($app->start());
 
-var_dump($_SERVER['REQUEST_URI']);
-var_dump($_SERVER['REQUEST_METHOD']);
+// var_dump($_SERVER['REQUEST_URI']);
+// var_dump($_SERVER['REQUEST_METHOD']);
 
 
 function dd($value){
@@ -102,5 +111,5 @@ function dd($value){
 // $result['cc'] = 'dd';
 
 // dd($result);
-
-dd(RouteService::$routes);
+// $cow = 'sdfsdf';
+// dd($cow ?? 'nothing');

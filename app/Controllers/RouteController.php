@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Services\RouteService;
+use App\Services\RedirectService;
 
 class RouteController{
 
@@ -27,6 +28,19 @@ class RouteController{
     public function start(){
         $route = $this->routeService->callCorrespondentController($this->getUrl(),$this->getHttpMethod());
 
-        return $route ?? '404 Not Found';
-    }
+        if(is_string($route)){
+            switch($route){
+                case 'wrong_uri':
+                    RedirectService::redirect(prefix:'message',query:$route);
+                    break;
+                case 'not_auth':
+                    RedirectService::redirect(prefix:'message',query:$route);
+                    break;
+                case 'no_user';
+                    RedirectService::redirect(prefix:'message',query:$route);
+                    break;
+            }
+        }
+        return $route ?? "404 Not Found";
+    }        
 }

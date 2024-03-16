@@ -5,11 +5,14 @@ class RedirectService{
 
     private static $base_uri = 'http://localhost';
 
-    public static function redirect($path,$query = ""){
-        
+    public static function redirect($path = null, $prefix= null, $query = null ){
+
         $uri = self::$base_uri.$path;
-        $url = strlen($query) !== 0 ? "$uri?$query" : $uri;
-        header("location: $url");
+        if(isset($query) && isset($prefix)){
+            $encode = urlencode($query);
+            $uri = "$uri?$prefix=$encode";
+        }
+        header("location: $uri");
         exit();
 
     }
