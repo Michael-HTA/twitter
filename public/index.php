@@ -5,7 +5,7 @@ ini_set('display_errors',1);
 // include_once __DIR__."/../app/Controllers/UserController.php";
 // include_once __DIR__."/../app/Services/UserService.php";
 include_once(__DIR__."/../vendor/autoload.php");
-require_once(__DIR__.'/../routes/web.php');
+// require_once(__DIR__.'/../routes/web.php');
 
 use App\Controllers\RouteController;
 use App\Controllers\UserController;
@@ -19,8 +19,6 @@ use App\Services\RouteService;
 // echo $userController;
 // die();
 
-session_start();
-
 
 
 // if(isset($_GET['message'])){
@@ -28,8 +26,11 @@ session_start();
 //     echo "<p> $message </p>";
 // }
 
-$_POST['email'] = 'test@gmail.com';
-$_POST['password'] = 'passwordd';
+// $_POST['email'] = 'test@gmail.com';
+// $_POST['password'] = 'passwordd';
+
+// $app = new RouteController();
+// var_dump($app->start());
 
 
 // die();
@@ -39,17 +40,17 @@ $_POST['password'] = 'passwordd';
 // var_dump($_SERVER);
 // echo '</pre>';
 
-// $_POST['email'] = 'admin@gmail.com';
-// $_POST['password'] = 'admin';
+$_POST['email'] = 'admin@gmail.com';
+$_POST['password'] = 'admin';
 
 // $stre = "";
 // var_dump(strlen($stre));
 
-$app = new RouteController();
-var_dump($app->start());
+
 
 // var_dump($_SERVER['REQUEST_URI']);
 // var_dump($_SERVER['REQUEST_METHOD']);
+
 
 
 function dd($value){

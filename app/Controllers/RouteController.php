@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use App\Services\AuthService;
 use App\Services\RouteService;
 use App\Services\RedirectService;
 
@@ -26,6 +27,11 @@ class RouteController{
     }
 
     public function start(){
+
+        //set the user's role to guest if user is not login
+        AuthService::setUser();
+
+
         $route = $this->routeService->callCorrespondentController($this->getUrl(),$this->getHttpMethod());
 
         if(is_string($route)){

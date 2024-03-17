@@ -23,11 +23,12 @@ class UserController{
     }
 
     public function index(){
-        $_SESSION['guest'] = 'guest';
         $hello = 'Hello from the index function';
         // var_dump($_SESSION['middleware']);
         // die();
-        return [require_once(__DIR__.'/../../view/login.php'),$hello];
+        $hello= 'hello';
+        return view('login',['hello' => $hello]);
+        // return [require_once(__DIR__.'/../../view/login.php'),$hello];
     }
 
     public function login(){

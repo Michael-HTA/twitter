@@ -4,8 +4,6 @@ namespace App\Services;
 class AuthService{
     public static function check($user){
 
-        // session_start();
-
         if(isset($_SESSION[$user])){
             return $_SESSION[$user];
         } else {
@@ -14,6 +12,7 @@ class AuthService{
     }
 
     public static function setUser(){
-        
+        session_start();
+        isset($_SESSION['user']) ?? $_SESSION['guest'] = TRUE;
     }
 }
