@@ -2,7 +2,7 @@
 
 <body class="text-center">
 	<div class="wrap">
-		<h1 class="h3 mb-3">Administration</h1>
+		<h1 class="h3 mb-3">Qwitter</h1>
 
 		<?php if (isset($_GET['incorrect'])) : ?>
 			<div class="alert alert-warning">
@@ -21,8 +21,7 @@
 				Account created. Please login.
 			</div>
 		<?php endif ?>
-		<?php echo "<p> $hello </p>"; ?>	
-		<form action= "../public/test.php" method="post">
+		<form action="/login" method="post">
 			<!-- <input type="text" name="name" class="form-control mb-2" placeholder="name" required> -->
 			<input type="email" name="email" class="form-control mb-2" placeholder="Email" required>
 

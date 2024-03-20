@@ -12,7 +12,7 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Helpers/helper.php",
+            "app/Helpers/Helper.php",
             "routes/web.php"
         ]
     }

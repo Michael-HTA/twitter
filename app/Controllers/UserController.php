@@ -13,6 +13,7 @@ ini_set('display_errors',1);
 // include_once(__DIR__."/../../vendor/autoload.php");
 use App\Interface\UserInterface;
 use App\Services\UserService;
+use App\Services\RedirectService;
 
 
 class UserController{
@@ -23,17 +24,14 @@ class UserController{
     }
 
     public function index(){
-        $hello = 'Hello from the index function';
-        // var_dump($_SESSION['middleware']);
-        // die();
-        $hello= 'hello';
-        return view('login',['hello' => $hello]);
-        // return [require_once(__DIR__.'/../../view/login.php'),$hello];
+
+        return view('/login');
+
     }
 
     public function login(){
         $user =$this->obj->login();
-        return $user ? $user : 'no_user';
+        return $user ? RedirectService::redirect(path:'/dashboard'): 'no_user';
     }
 
     public function register(){
@@ -42,5 +40,9 @@ class UserController{
 
     public function logout(){
         return $this->obj->logout();
+    }
+
+    public function dashboard(){
+        return view('/dashboard');
     }
 }

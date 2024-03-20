@@ -29,8 +29,8 @@ use App\Services\RouteService;
 // $_POST['email'] = 'test@gmail.com';
 // $_POST['password'] = 'passwordd';
 
-// $app = new RouteController();
-// var_dump($app->start());
+$app = new RouteController();
+$app->start();
 
 
 // die();
@@ -40,8 +40,8 @@ use App\Services\RouteService;
 // var_dump($_SERVER);
 // echo '</pre>';
 
-$_POST['email'] = 'admin@gmail.com';
-$_POST['password'] = 'admin';
+// $_POST['email'] = 'admin@gmail.com';
+// $_POST['password'] = 'admin';
 
 // $stre = "";
 // var_dump(strlen($stre));

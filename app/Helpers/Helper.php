@@ -1,11 +1,14 @@
 <?php
-// namespace Helper;
 
 function view($fileName, $data = null){
-    $fileBasePath = '__DIR__./../../view/';
+    $fileBasePath = '/../../view';
 
     //type casting
-    $data = (object)$data;
+    if(isset($data)){
+        foreach($data as $key => $value){
+            ${$key} = (object)$value;
+        }
+    }
 
-    return [ $data, require_once($fileBasePath.$fileName.'.php')];
+    return require_once(__DIR__.$fileBasePath.$fileName.'.php');
 }
