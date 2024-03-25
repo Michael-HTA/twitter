@@ -35,6 +35,7 @@ class UserController{
     }
 
     public function register(){
+        return view('/register');
         return $this->obj->register();
     }
 
@@ -43,6 +44,6 @@ class UserController{
     }
 
     public function dashboard(){
-        return view('/dashboard');
+        return view('/main');
     }
 }

@@ -4,8 +4,8 @@
 
 <div style="width: 100%;
 			max-width: 500px;
-			margin: 40px auto;" class="text-center border border-primary-subtle rounded d-flex justify-content-center">
-	<div class="w-75">
+			margin: 40px auto;" class="text-center">
+	
 		<h1 class="h3 mb-3">
 			<a href="/" class="text-decoration-none text-black">Qwitter</a>
 		</h1>
@@ -36,7 +36,7 @@
 		</form>
 		<br>
 		<a href="/register">Register</a>
-	</div>
+
 </div>
 
 
