@@ -14,7 +14,7 @@
         <h1 class="h3 mb-3">
 			<a href="/" class="text-decoration-none text-black">Qwitter</a>
 		</h1>
-            <form action="/" method="post">
+            <form action="/register" method="post">
                 <input type="name" name="name" class="form-control mb-2" placeholder="Name" required>
                 <input type="email" name="email" class="form-control mb-2" placeholder="Email" required>
                 <input type="password" name="password" class="form-control mb-2" placeholder="Password" required>

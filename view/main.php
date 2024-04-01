@@ -41,8 +41,14 @@
 		/* .fixed-left {
 			position: fixed;
 		} */
+
+		.top {
+			height:50px;
+		}
 	</style>
 </head>
+
+
 
 <body style="background-color: #F5F5F5;">
 	<div class="container-fluid">
@@ -100,11 +106,17 @@
 						</span>
 						<div class="mx-3">Setting</div>
 					</a>
+					<a href="/logout" class="list-group-item list-group-item-action  d-flex border-0">
+						<span class="material-symbols-outlined">
+							logout
+						</span>
+						<div class="mx-3">Logout</div>
+					</a>
 				</div>
 			</div>
 			<div class="col-7">
 				<div class="container-fluid m-0 p-0">
-					<div class="row">
+					<div class="row mb-2">
 						<div class="col d-flex mt-2">
 							<div> 
 								<a href="/" class="me-2">
@@ -121,16 +133,55 @@
 							</div>
 						</div>
 					</div>
-					
-						<?php for($i = 0; $i < 15; $i++){ ?>
-							<div class="row">
-							<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, 
-								maxime laboriosam atque aut dolore sed modi reiciendis quod corrupti similique 
-								corporis quaerat eius ut alias nobis fugit aperiam assumenda. Possimus!
-							</p>
+
+					<!-- post -->
+					<?php for($i = 0; $i < 1; $i++){ ?>
+						<div class="row mt-3">
+							<div class="col-1">
+								<a href="/" class="me-2">
+									<img src="https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=600" alt="profile" style="widht:60px;height:60px" class="rounded-pill  mt-1">
+								</a>
 							</div>
-						<?php } ?>
-					
+							<div class="col-10 ms-1">
+								<div class="container-fluid p-0 m-0">
+									<div class="row">
+										<div class="col">
+											<div class="d-flex">
+												<p class="me-2"><?= $user->name ?></p>
+												<p>25/5/2024</p>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12">
+											<div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem ut doloremque, 
+												amet laborum similique placeat sunt. Architecto tenetur laudantium excepturi, 
+												provident quis itaque. Corrupti eum sapiente necessitatibus? Quos, alias expedita?</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<div>
+												<img src="https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" style="width:300px;height:250px"> 
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col d-flex justify-content-between">
+											<div>Like</div>
+											<div>Comment</div>
+											<div>Share</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php } ?>
+					<div class="row">
+						<div class="col">
+							<div style="height:30px;"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="col-3 border-start border-2">

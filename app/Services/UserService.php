@@ -27,15 +27,18 @@ class UserService implements UserInterface{
 
     public function login(){
 
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        $email = $_POST['email']?? $_SESSION['email'];
+        $password = $_POST['password'] ?? $_SESSION['password'];
         
         //email validation
         $filtered_email = filter_var($email,FILTER_VALIDATE_EMAIL);
         $user = $this->db->findByEmailAndPassword($filtered_email,$password);
+        
 
-        if(isset($user)){
+        if(!empty($user)){
             unset($_SESSION['guest']);
+            $_SESSION['email'] = $email;
+            $_SESSION['password'] = $password;
             $_SESSION['user'] = $user->name;
         }
         
@@ -46,8 +49,12 @@ class UserService implements UserInterface{
     }
 
     public function logout(){
-        
-        return  "logout";
+        unset($_SESSION['user']);
+        unset($_SESSION['email']);
+        unset($_SESSION['password']);
+        session_destroy();
+        http_response_code(200);
+        return TRUE;
     }
 
     public function register(){

@@ -1,14 +1,7 @@
 <?php
 
 function view($fileName, $data = null){
-    $fileBasePath = '/../../view';
-
-    //type casting
-    if(isset($data)){
-        foreach($data as $key => $value){
-            ${$key} = (object)$value;
-        }
-    }
-
-    return require_once(__DIR__.$fileBasePath.$fileName.'.php');
+//    var_dump($fileName);
+//    die();
+    return isset($data) ? ['file' => $fileName,'data' => $data] : ['file' => $fileName];
 }

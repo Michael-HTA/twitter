@@ -22,6 +22,12 @@
 			</div>
 		<?php endif ?>
 
+		<?php if (isset($_GET['404'])) : ?>
+			<div class="alert alert-danger">
+				404 Not Found.
+			</div>
+		<?php endif ?>
+
 		<?php if (isset($_GET['registered'])) : ?>
 			<div class="alert alert-success">
 				Account created. Please login.

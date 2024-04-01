@@ -29,6 +29,9 @@ use App\Services\RouteService;
 // $_POST['email'] = 'test@gmail.com';
 // $_POST['password'] = 'passwordd';
 
+// dd($_SERVER);
+
+
 $app = new RouteController();
 $app->start();
 
@@ -57,6 +60,7 @@ function dd($value){
     echo '<pre>';
     var_dump($value);
     echo '</pre>';
+    die();
 }
 
 

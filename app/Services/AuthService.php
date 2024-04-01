@@ -13,6 +13,6 @@ class AuthService{
 
     public static function setUser(){
         session_start();
-        isset($_SESSION['user']) ?? $_SESSION['guest'] = TRUE;
+        $_SESSION['user'] ?? $_SESSION['guest'] = TRUE;
     }
 }

@@ -31,19 +31,30 @@ class UserController{
 
     public function login(){
         $user =$this->obj->login();
+
+        //respond header
+        http_response_code(200);
+
+        //respond body
         return $user ? RedirectService::redirect(path:'/dashboard'): 'no_user';
     }
 
-    public function register(){
+    public function add(){
         return view('/register');
-        return $this->obj->register();
+    }
+
+    public function register(){
+        $lastId = $this->obj->register();
+        RedirectService::redirect();
     }
 
     public function logout(){
-        return $this->obj->logout();
+        $isLogout =  $this->obj->logout();
+        if($isLogout) RedirectService::redirect('/');
     }
 
     public function dashboard(){
-        return view('/main');
+        $user = $this->obj->login();
+        return view('/main',['user' => $user]);
     }
 }
