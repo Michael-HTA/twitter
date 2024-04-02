@@ -120,7 +120,7 @@
 						<div class="col d-flex mt-2">
 							<div> 
 								<a href="/" class="me-2">
-									<img src="https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=600" alt="profile" style="widht:60px;height:60px" class="rounded-pill  mt-1">
+									<img src="https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=600" alt="profile" style="width:60px;height:60px" class="rounded-pill  mt-1">
 								</a>
 							</div>
 							<div style="width: 90%">
@@ -139,7 +139,7 @@
 						<div class="row mt-3">
 							<div class="col-1">
 								<a href="/" class="me-2">
-									<img src="https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=600" alt="profile" style="widht:60px;height:60px" class="rounded-pill  mt-1">
+									<img src="https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=600" alt="profile" style="width:60px;height:60px" class="rounded-pill  mt-1">
 								</a>
 							</div>
 							<div class="col-10 ms-1">

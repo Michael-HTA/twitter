@@ -23,8 +23,6 @@ class RouteService{
 
     public function callCorrespondentController($request,$http_method){
 
-        // session_start();
-
         if(!is_null($request)){
             foreach(self::$routes as $route){
                 if(preg_match($route['uri'],$request)){

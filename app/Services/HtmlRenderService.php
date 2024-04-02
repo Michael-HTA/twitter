@@ -2,22 +2,14 @@
 
 namespace App\Services;
 
-class TinkerService{
+class HtmlRenderService{
 
     public static function render($fileAndData){
-        echo 'this is not working';
-        die();
+       
         $fileBasePath = '/../../view';
-        var_dump($fileAndData);
-        print_r($fileAndData);
-        die();
-        var_dump($fileAndData['file']);
 
-        $filename = $fileAndData[0];
-        $data = $fileAndData[1] ?? null;
-        // var_dump($data);
-        var_dump($filename);
-        die();
+        $fileName = $fileAndData['file'];
+        $data = $fileAndData['data'] ?? null;
 
         //type casting
         if(isset($data)){
@@ -28,6 +20,6 @@ class TinkerService{
 
         //logic to render HTML from the file and data goes here
         require_once(__DIR__.$fileBasePath.$fileName.'.php');
-        // return TRUE;
+        return TRUE;
     }
 }

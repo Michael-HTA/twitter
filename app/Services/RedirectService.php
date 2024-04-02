@@ -2,7 +2,7 @@
 namespace App\Services;
 
 class RedirectService{
-
+    
     private static $base_uri = 'http://localhost';
 
     public static function redirect($path = null, $prefix= null, $query = null){
@@ -19,5 +19,10 @@ class RedirectService{
         header("location: $uri");
         exit();
 
+    }
+
+    public static function back($message = null){
+        $last_visit_uri = $_SESSION['last_visit_uri'];
+        isset($message) ? self::redirect($last_visit_uri,$message) : self::redirect($last_visit_uri);
     }
 }

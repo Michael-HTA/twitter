@@ -52,6 +52,7 @@ class UserService implements UserInterface{
         unset($_SESSION['user']);
         unset($_SESSION['email']);
         unset($_SESSION['password']);
+        unset($_SESSION['last_visit_uri']);
         session_destroy();
         http_response_code(200);
         return TRUE;

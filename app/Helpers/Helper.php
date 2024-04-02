@@ -1,7 +1,6 @@
 <?php
 
-function view($fileName, $data = null){
-//    var_dump($fileName);
-//    die();
+function view($fileName = null, $data = null){
+
     return isset($data) ? ['file' => $fileName,'data' => $data] : ['file' => $fileName];
 }

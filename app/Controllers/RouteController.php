@@ -2,9 +2,10 @@
 namespace App\Controllers;
 
 use App\Services\AuthService;
+use App\Services\HtmlRenderService;
 use App\Services\RouteService;
 use App\Services\RedirectService;
-use App\Services\TinkerService;
+
 
 class RouteController{
 
@@ -28,32 +29,22 @@ class RouteController{
     }
 
     public function lastVisitUri(){
-        $_SESSION['lastVisitUri'] = $this->getUrl();
-        var_dump($_SESSION['lastVisitUri']);
+        
+        $_SESSION['last_visit_uri'] = $this->getUrl();
     }
 
     public function start(){
 
-        //set the user's role to guest if user is not login
         AuthService::setUser();
-        // var_dump($this->routeHandler());
-        return $this->routeHandler();
-        // return $result = $this->routeHandler();
-
-        // if(isset($result)){
-        //     $this->lastVisitUri();
-            
-        //     return $result;
-        // }
+        if($this->routeHandler()) $this->lastVisitUri();
         
     }
 
     public function routeHandler(){
 
         $route = $this->routeService->callCorrespondentController($this->getUrl(),$this->getHttpMethod());
-        echo 'this is working';
-        var_dump($route['file']);
 
+        //redirecting for error route
         if(is_string($route)){
             switch($route){
                 case 'wrong_uri':
@@ -62,24 +53,22 @@ class RouteController{
                     break;
                 case 'not_auth':
                     http_response_code(403);
-                    RedirectService::redirect(prefix:'message',query:$route);
+                    RedirectService::back('suspended');
                     break;
                 case 'no_user';
                     RedirectService::redirect(prefix:'incorrect');
                     break;
-                default:
-                // array not string put this logic out of the switch
-                echo 'this is working';
-                    $test = [
-                        'file' => 'filename',
-                        'data' => 'dataname',
-                    ];
-                    TinkerService::render($test);
-                    
             }
+        //redirecting 404 route
         } elseif(is_null($route)){
+
             http_response_code(404);
             RedirectService::redirect(prefix:'404');
+
+        } else{
+            // rendering html page
+            return HtmlRenderService::render($route);
+
         }
     }
 }

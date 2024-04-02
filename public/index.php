@@ -4,13 +4,13 @@ ini_set('display_errors',1);
 
 // include_once __DIR__."/../app/Controllers/UserController.php";
 // include_once __DIR__."/../app/Services/UserService.php";
+
+//including auto load
 include_once(__DIR__."/../vendor/autoload.php");
 // require_once(__DIR__.'/../routes/web.php');
 
 use App\Controllers\RouteController;
-use App\Controllers\UserController;
-use App\Services\AuthService;
-use App\Services\RouteService;
+
 
 // linux test@gmail.com password
 // window admin@gmail.com admin
@@ -35,6 +35,8 @@ use App\Services\RouteService;
 $app = new RouteController();
 $app->start();
 
+
+// var_dump($_SESSION['last_visit_uri']);
 
 // die();
 // exit();

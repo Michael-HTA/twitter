@@ -18,7 +18,7 @@
 
 		<?php if (isset($_GET['suspended'])) : ?>
 			<div class="alert alert-danger">
-				Your account is suspended.
+				Not Authorize.
 			</div>
 		<?php endif ?>
 
