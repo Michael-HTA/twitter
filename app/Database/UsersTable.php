@@ -21,7 +21,7 @@ class UsersTable{
         $statement->execute(["email" => $email]);
 
         $user = $statement->fetch();
-
+       
         if($user){
             if(password_verify($password, $user->password)){
                 return $user;
@@ -33,13 +33,13 @@ class UsersTable{
 
     public function storeUser($data){
 
-        $query = "INSERT INTO users (name,email,password) VALUES (:name,:email,:password)";
+        $query = "INSERT INTO users (first_name,last_name,email,password) VALUES ( :first_name, :last_name, :email, :password)";
         $statement = $this->db->prepare($query);
         try{
             $statement->execute($data);
             return $this->db->lastInsertId();
         }catch(PDOException $e){
-            return $e->getMessage();
+            if($e->getMessage()) return false;
         }
         
     }

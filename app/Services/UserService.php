@@ -27,25 +27,29 @@ class UserService implements UserInterface{
 
     public function login(){
 
-        $email = $_POST['email']?? $_SESSION['email'];
-        $password = $_POST['password'] ?? $_SESSION['password'];
+        $email = isset($_POST['email']) ? trim($_POST['email']): $_SESSION['email'];
+        $password = isset($_POST['password']) ? trim($_POST['password']): $_SESSION['password'];
         
         //email validation
         $filtered_email = filter_var($email,FILTER_VALIDATE_EMAIL);
-        $user = $this->db->findByEmailAndPassword($filtered_email,$password);
         
+        //if email validation
+        if($filtered_email === false) return false;
 
-        if(!empty($user)){
+        //authenticating the user
+        $user = $this->db->findByEmailAndPassword($filtered_email,$password);
+        // var_dump($user);
+        // die();
+        // return data related to user if user is authenticated
+        if($user !== false){
             unset($_SESSION['guest']);
             $_SESSION['email'] = $email;
             $_SESSION['password'] = $password;
-            $_SESSION['user'] = $user->name;
+            $_SESSION['user'] = $user->first_name;
+            return $user;
+        } else {
+            return false;
         }
-        
-        return $user;
-
-
-
     }
 
     public function logout(){
@@ -61,21 +65,31 @@ class UserService implements UserInterface{
     public function register(){
 
 
-        $name = $_POST["name"];
-        $email = $_POST["email"];
-        $password = $_POST["password"];
+        $first_name = trim($_POST["first_name"]);
+        $last_name = trim($_POST["last_name"]);
+        $email = trim($_POST["email"]);
+        $password = trim($_POST["password"]);
 
         //validation
         $filtered_email = filter_var($email,FILTER_VALIDATE_EMAIL);
+
+        //if email validation
+        if($filtered_email === false) return false;
+
         $hash_password = password_hash($password,PASSWORD_DEFAULT);
 
+
         $data = [
-            "name" => $name,
+            "first_name" => $first_name,
+            "last_name" => $last_name,
             "email" => $filtered_email,
             "password" => $hash_password,
         ];
-        
-        return $this->db->storeUser($data);
+
+        //storing data
+        $result = $this->db->storeUser($data);
+        // if storing data fail reutrn false
+        return  $result !== false ? $result : false;
 
     }
 }

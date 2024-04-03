@@ -147,7 +147,7 @@
 									<div class="row">
 										<div class="col">
 											<div class="d-flex">
-												<p class="me-2"><?= $user->name ?></p>
+												<p class="me-2"><?= $user->first_name ?></p>
 												<p>25/5/2024</p>
 											</div>
 										</div>

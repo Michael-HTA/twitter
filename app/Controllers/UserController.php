@@ -20,40 +20,63 @@ class UserController{
     private $obj;
 
     public function __construct(){
+
         $this->obj = new UserService();
     }
 
     public function index(){
-
+        
+        http_response_code(200);
         return view('/login');
 
     }
 
     public function login(){
+
         $user =$this->obj->login();
 
-        //respond header
-        http_response_code(200);
-
-        //respond body
-        return $user ? RedirectService::redirect(path:'/dashboard'): 'no_user';
+        if($user !== false){
+            //respond header
+            http_response_code(200);
+            RedirectService::redirect(path:'/dashboard');
+        } else {
+            http_response_code(401);
+            RedirectService::back('incorrect');
+        }
     }
 
     public function add(){
+
+        //respond header
+        http_response_code(200);
         return view('/register');
     }
 
     public function register(){
+        
         $lastId = $this->obj->register();
-        RedirectService::redirect();
+
+        // redirecting user
+        if($lastId !== false && $lastId !== 0){
+            //respond if intended to use 201 return the data don't redirect, it won't work
+            http_response_code(200);
+            RedirectService::redirect(path:'/',prefix:'registered');
+        } else {
+            http_response_code(400);
+            RedirectService::back('incorrect');
+        }
     }
 
     public function logout(){
+
         $isLogout =  $this->obj->logout();
+        http_response_code(200);
         if($isLogout) RedirectService::redirect('/');
     }
 
     public function dashboard(){
+
+        http_response_code(200);
         $user = $this->obj->login();
         return view('/main',['user' => $user]);
     }

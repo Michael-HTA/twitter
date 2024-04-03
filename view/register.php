@@ -11,11 +11,17 @@
         <div class="container-fluid text-center" style="width: 100%;
         max-width: 500px;
         margin: 40px auto;">
-        <h1 class="h3 mb-3">
-			<a href="/" class="text-decoration-none text-black">Qwitter</a>
-		</h1>
+            <?php if (isset($_GET['incorrect'])) : ?>
+                <div class="alert alert-warning">
+                    Register unsuccessful!
+                </div>
+            <?php endif ?>
+            <h1 class="h3 mb-3">
+                <a href="/" class="text-decoration-none text-black">Qwitter</a>
+            </h1>
             <form action="/register" method="post">
-                <input type="name" name="name" class="form-control mb-2" placeholder="Name" required>
+                <input type="name" name="first_name" class="form-control mb-2" placeholder="First name" required>
+                <input type="name" name="last_name" class="form-control mb-2" placeholder="Last name" required>
                 <input type="email" name="email" class="form-control mb-2" placeholder="Email" required>
                 <input type="password" name="password" class="form-control mb-2" placeholder="Password" required>
                 <button type="submit" class="w-100 btn btn-lg btn-primary">

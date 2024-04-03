@@ -47,19 +47,18 @@ class RouteController{
         //redirecting for error route
         if(is_string($route)){
             switch($route){
+                // 404 but not 404 user error
                 case 'wrong_uri':
                     http_response_code(404);
                     RedirectService::redirect(prefix:'404');
                     break;
                 case 'not_auth':
+                    //forbidden route
                     http_response_code(403);
                     RedirectService::back('suspended');
                     break;
-                case 'no_user';
-                    RedirectService::redirect(prefix:'incorrect');
-                    break;
             }
-        //redirecting 404 route
+        //redirecting 404 route no uri registered
         } elseif(is_null($route)){
 
             http_response_code(404);
