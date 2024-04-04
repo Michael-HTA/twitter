@@ -38,10 +38,10 @@ class UserService implements UserInterface{
 
         //authenticating the user
         $user = $this->db->findByEmailAndPassword($filtered_email,$password);
-        // var_dump($user);
-        // die();
+       
         // return data related to user if user is authenticated
         if($user !== false){
+            session_regenerate_id();
             unset($_SESSION['guest']);
             $_SESSION['email'] = $email;
             $_SESSION['password'] = $password;
@@ -89,7 +89,13 @@ class UserService implements UserInterface{
         //storing data
         $result = $this->db->storeUser($data);
         // if storing data fail reutrn false
-        return  $result !== false ? $result : false;
+        if($result !== false){
+            //security purpose
+            session_regenerate_id();
+            return $result;
+        } else {
+            return false;
+        }
 
     }
 }

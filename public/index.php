@@ -14,7 +14,102 @@ use App\Controllers\RouteController;
 
 // linux test@gmail.com password
 // window admin@gmail.com admin
+// $time = '2024-04-03 09:16:56';
 
+// $obj->time = '2024-04-03 09:16:56';
+// $obj->ObjTime = date("d-m-Y",strtotime($obj->time));
+// var_dump($obj->ObjTime);
+
+// $data = [
+//     'users' => [
+//         ['name' => 'mike'],
+//         ['name' => 'louis'],
+//         ['name' => 'steven'],
+//     ]
+//     ];
+
+// function arrayToObjectRecursive($array) {
+//     $object = new stdClass();
+//     foreach ($array as $key => $value) {
+//         if (is_array($value)) {
+//             $object->{$key} = arrayToObjectRecursive($value);
+//         } else {
+//             $object->{$key} = $value;
+//         }
+//     }
+//     return $object;
+// }
+
+// Example nested array
+// $nestedArray = [
+//         'users' => 
+//             [
+//             'name' => 'John',
+//             'age' => 30,
+//             'contacts' => 
+//                 [
+//                     'email' => 'john@example.com',
+//                     'phone' => '1234567890'
+//                 ]
+//                 ],
+//             'consumer' => [
+//                 'name' => 'louis',
+//             ]
+// ];
+// $data = (object)$nestedArray;
+// Create $users variable dynamically
+// foreach($nestedArray as $key => $value){
+//     ${$key} = arrayToObjectRecursive($value);
+// }
+
+// $users->{$key} = ${$key};
+// Access the properties dynamically
+// echo $users->name . "\n"; // Outputs: John
+// echo $users->age . "\n"; // Outputs: 30
+// echo $users->contacts->email . "\n"; // Outputs: john@example.com
+// echo $users->contacts->phone . "\n"; // Outputs: 1234567890
+
+// echo $consumer->name . "\n"; 
+
+
+
+
+
+
+// $data = [
+//     'users' => ['name' => 'steven']
+//     ];
+
+
+// foreach($data as $key => $value){
+//     ${$key} = (object) $value;
+//     if(isset(${$key}->{0})){
+//         unset(${$key});
+//         ${$key} = [];
+//         foreach(${$key} as $secondKey => $secondValue){
+//             ${$key} =(object) $secondValue;
+//         }
+//     }
+
+    // var_dump(${$key});
+// }
+
+// foreach($users as $user){
+//     echo '<pre>';
+//     var_dump($user->name);
+//     echo '</pre>';
+// }
+
+
+
+// echo gettype($users->{0});
+// print_r($users->{0});
+// foreach($users as $user){
+//     print_r($user);
+// }
+// print_r($users);
+
+// die();
 
 // if(isset($_GET['message'])){
 //     $message = urldecode($_GET['message']);
