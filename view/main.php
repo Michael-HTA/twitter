@@ -10,7 +10,7 @@
 	<!-- icon -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 	<style>
-		.nav_bg a{
+		.nav_bg a {
 			background-color: #F5F5F5;
 		}
 
@@ -43,7 +43,7 @@
 		} */
 
 		.top {
-			height:50px;
+			height: 50px;
 		}
 	</style>
 </head>
@@ -54,7 +54,7 @@
 	<div class="container-fluid">
 		<div class="row" style="height: 100vh;">
 			<!-- setting column  -->
-			<div class="col-2 border-end border-2 nav_bg" >
+			<div class="col-2 border-end border-2 nav_bg">
 				<div class="list-group mt-2 position-fixed">
 					<a href="#" class="list-group-item list-group-item-action d-flex justify-content-center border-0">
 						<i class="fa fa-twitter"></i>
@@ -118,7 +118,7 @@
 				<div class="container-fluid m-0 p-0">
 					<div class="row mb-2">
 						<div class="col d-flex mt-2">
-							<div> 
+							<div>
 								<a href="/" class="me-2">
 									<img src="https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=600" alt="profile" style="width:60px;height:60px" class="rounded-pill  mt-1">
 								</a>
@@ -127,7 +127,7 @@
 								<form action="#">
 									<div class="input-group ">
 										<input type="text" class="form-control me-2 rounded border-dark border-1 text-start" placeholder="What's in your mind?" style="height:70px">
-										<button class="btn border-dark rounded-pill border-2 h-25 tweet my-auto" >Tweet</button>
+										<button class="btn border-dark rounded-pill border-2 h-25 tweet my-auto">Tweet</button>
 									</div>
 								</form>
 							</div>
@@ -135,7 +135,7 @@
 					</div>
 
 					<!-- post -->
-					<?php for($i = 0; $i < 1; $i++){ ?>
+					<?php for ($i = 0; $i < 1; $i++) { ?>
 						<div class="row mt-3">
 							<div class="col-1">
 								<a href="/" class="me-2">
@@ -154,15 +154,15 @@
 									</div>
 									<div class="row">
 										<div class="col-12">
-											<div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem ut doloremque, 
-												amet laborum similique placeat sunt. Architecto tenetur laudantium excepturi, 
+											<div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem ut doloremque,
+												amet laborum similique placeat sunt. Architecto tenetur laudantium excepturi,
 												provident quis itaque. Corrupti eum sapiente necessitatibus? Quos, alias expedita?</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col">
 											<div>
-												<img src="https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" style="width:300px;height:250px"> 
+												<img src="https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" style="width:300px;height:250px">
 											</div>
 										</div>
 									</div>
@@ -175,6 +175,20 @@
 									</div>
 								</div>
 							</div>
+						</div>
+					<?php } ?>
+					<?php foreach ($posts as $post) { ?>
+						<div class="row mt-3">
+							<div class="col-4">
+								<?= $post->post ?>
+							</div>
+							<div class="col-4">
+								<?= $post->user_id ?>
+							</div>
+							<div class="col-4">
+								<?= date('d-m-Y', strtotime($post->created_at)) ?>
+							</div>
+
 						</div>
 					<?php } ?>
 					<div class="row">
@@ -197,8 +211,8 @@
 								<div class="card mt-2">
 									<div class="card-body">
 										<h5 class="card-title">What's happening now?</h5>
-										<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, laboriosam deserunt. 
-											Est laboriosam aperiam culpa repudiandae accusamus nihil illum, 
+										<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, laboriosam deserunt.
+											Est laboriosam aperiam culpa repudiandae accusamus nihil illum,
 											voluptates eaque inventore iste, alias, beatae molestias provident in! Deserunt, mollitia.
 										</p>
 									</div>
@@ -213,7 +227,7 @@
 
 
 
-	
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 

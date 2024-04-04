@@ -51,7 +51,7 @@ class HtmlRenderService{
         $object = new stdClass();
         foreach ($array as $key => $value) {
             if (is_array($value)) {
-                $object->{$key} = arrayToObjectRecursive($value);
+                $object->{$key} = self::arrayToObjectRecursive($value);
             } else {
                 $object->{$key} = $value;
             }

@@ -14,7 +14,7 @@ ini_set('display_errors',1);
 use App\Interface\UserInterface;
 use App\Services\UserService;
 use App\Services\RedirectService;
-
+use App\Services\PostService;
 
 class UserController{
     private $obj;
@@ -77,7 +77,12 @@ class UserController{
     public function dashboard(){
 
         http_response_code(200);
+        $postService = new PostService();
+        $posts = $postService->getAllPost();
         $user = $this->obj->login();
-        return view('/main',['user' => $user]);
+        return view('/main',[
+            'user' => $user,
+            'posts' => $posts,
+        ]);
     }
 }
