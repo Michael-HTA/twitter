@@ -180,7 +180,7 @@
 					<?php foreach ($posts as $post) { ?>
 						<div class="row mt-3">
 							<div class="col-4">
-								<?= $post->post ?>
+								<?= $post->body ?>
 							</div>
 							<div class="col-4">
 								<?= $post->user_id ?>

@@ -12,6 +12,13 @@ include_once(__DIR__."/../vendor/autoload.php");
 use App\Controllers\RouteController;
 
 
+// $a = '2';
+
+// echo $a > 0  && is_numeric($a);
+// if(isset($a)) echo 'this empy is set';
+// if(!is_int(intval($a))) echo 'this is not int';
+// die();
+
 // linux test@gmail.com password
 // window admin@gmail.com admin
 // $time = '2024-04-03 09:16:56';

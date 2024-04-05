@@ -1,5 +1,5 @@
 <?php
-namespace App\Database;
+namespace App\Database\Tables;
 
 // require_once __DIR__."/../Interface/DatabaseInterface.php";
 
@@ -8,7 +8,7 @@ use App\Interface\DatabaseInterface;
 use PDOException;
 
 
-class UsersTable{
+class UsersTable extends Table{
     private $db;
 
     public function __construct(DatabaseInterface $mysql)
@@ -17,6 +17,7 @@ class UsersTable{
     }
 
     public function findByEmailAndPassword($email,$password){
+
         $statement = $this->db->prepare("SELECT * FROM users WHERE email=:email");
         $statement->execute(["email" => $email]);
 
@@ -34,14 +35,27 @@ class UsersTable{
     public function storeUser($data){
 
         $query = "INSERT INTO users (first_name,last_name,email,password) VALUES ( :first_name, :last_name, :email, :password)";
+
         $statement = $this->db->prepare($query);
-        try{
-            $statement->execute($data);
-            return $this->db->lastInsertId();
-        }catch(PDOException $e){
-            if($e->getMessage()) return false;
-        }
+
+        $result = parent::storeOrUpdate($this->db,$statement,$data);
+
+        return $result;
+    }
+
+    public function updateUser($data){
+
+        $query = "UPDATE users set first_name = :first_name,
+                                    last_name = :last_name,
+                                    email = :email,
+                                    password = :password
+                                    WHERE id = :id";
         
+        $statement = $this->db->prepare($query);
+
+        $result = parent::storeOrUpdate($this->db,$statement,$data);
+
+        return $result;
     }
 
 

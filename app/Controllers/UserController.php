@@ -78,8 +78,9 @@ class UserController{
 
         http_response_code(200);
         $postService = new PostService();
-        $posts = $postService->getAllPost();
         $user = $this->obj->login();
+        $posts = $postService->getUserPost($user->id);
+        
         return view('/main',[
             'user' => $user,
             'posts' => $posts,

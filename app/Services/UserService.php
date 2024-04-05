@@ -11,9 +11,9 @@ ini_set('display_errors',1);
 // require_once __DIR__."/../Database/UsersTable.php";
 
 use App\Interface\UserInterface;
-use App\Database\UsersTable;
+use App\Database\Tables\UsersTable;
 use App\Database\MySQL;
-use App\Database\SQLite;
+use App\Database\Drivers\SQLite;
 
 class UserService implements UserInterface{
 
@@ -34,7 +34,9 @@ class UserService implements UserInterface{
         $filtered_email = filter_var($email,FILTER_VALIDATE_EMAIL);
         
         //if email validation
-        if($filtered_email === false) return false;
+        if($filtered_email === false || empty($email) || empty($password)){
+            return false;
+        }
 
         //authenticating the user
         $user = $this->db->findByEmailAndPassword($filtered_email,$password);
@@ -65,16 +67,18 @@ class UserService implements UserInterface{
     public function register(){
 
 
-        $first_name = trim($_POST["first_name"]);
-        $last_name = trim($_POST["last_name"]);
-        $email = trim($_POST["email"]);
-        $password = trim($_POST["password"]);
+        $first_name = isset($_POST["first_name"]) ? trim($_POST["first_name"]) : '';
+        $last_name = isset($_POST["last_name"]) ? trim($_POST["last_name"]) : '';
+        $email = isset($_POST["email"]) ? trim($_POST["email"]) : '';
+        $password = isset($_POST["password"]) ? trim($_POST["password"]) : '';
 
         //validation
         $filtered_email = filter_var($email,FILTER_VALIDATE_EMAIL);
 
         //if email validation
-        if($filtered_email === false) return false;
+        if($filtered_email === false || empty($first_name) || empty($last_name) || empty($password)){ 
+            return false;
+        }
 
         $hash_password = password_hash($password,PASSWORD_DEFAULT);
 
