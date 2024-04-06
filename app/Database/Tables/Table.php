@@ -5,6 +5,7 @@ use PDOException;
 class Table{
     
     protected function storeOrUpdate($db,$statement,$data){
+
         try{
             //db lock
             $db->beginTransaction();
@@ -12,17 +13,23 @@ class Table{
             //query execution
             $statement->execute($data);
 
+            //getting last row id
+            $id = $db->lastInsertId();
+
             //db unlock
             $db->commit();
 
             //return id
-            return $db->lastInsertId();
+            return $id;
 
         }catch(PDOException $e){
-            if($e->getMessage()) {
 
-                //db rollback
+            if ($db->inTransaction()) {
+                // Rollback the transaction
                 $db->rollBack();
+            }
+
+            if($e->getMessage()) {
                 return false;
             }
         }

@@ -35,7 +35,13 @@ class RouteController{
 
     public function start(){
 
+        // setting time zone
+        date_default_timezone_set('Asia/Yangon');
+
+        //setting user or guest
         AuthService::setUser();
+
+        //recording last visited uri
         if($this->routeHandler()) $this->lastVisitUri();
         
     }

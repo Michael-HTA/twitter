@@ -12,11 +12,13 @@ include_once(__DIR__."/../vendor/autoload.php");
 use App\Controllers\RouteController;
 
 
-// $a = '2';
 
-// echo $a > 0  && is_numeric($a);
-// if(isset($a)) echo 'this empy is set';
-// if(!is_int(intval($a))) echo 'this is not int';
+// phpinfo();
+// Format the current time
+// $created_at = date('m-d-Y H:i:s',time());
+
+// echo $created_at; // Output: System local time in 'Y-m-d H:i:s' format
+
 // die();
 
 // linux test@gmail.com password

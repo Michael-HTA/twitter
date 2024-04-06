@@ -27,7 +27,10 @@ class UserService implements UserInterface{
 
     public function login(){
 
-        $email = isset($_POST['email']) ? trim($_POST['email']): $_SESSION['email'];
+        /*
+            need to install the mb_string package
+        */
+        $email = isset($_POST['email']) ? trim(mb_strtolower($_POST['email'], 'UTF-8')): $_SESSION['email'];
         $password = isset($_POST['password']) ? trim($_POST['password']): $_SESSION['password'];
         
         //email validation
@@ -64,13 +67,29 @@ class UserService implements UserInterface{
         return TRUE;
     }
 
-    public function register(){
+    public function register(?bool $updateTheEmail = true, ?bool $updateThePassword = true){
 
-
+        //name
         $first_name = isset($_POST["first_name"]) ? trim($_POST["first_name"]) : '';
         $last_name = isset($_POST["last_name"]) ? trim($_POST["last_name"]) : '';
-        $email = isset($_POST["email"]) ? trim($_POST["email"]) : '';
-        $password = isset($_POST["password"]) ? trim($_POST["password"]) : '';
+
+        //email validation
+        if($updateTheEmail){
+            $email = isset($_POST["email"]) ? trim(mb_strtolower($_POST["email"], 'UTF-8')) : '';
+        } else {
+            $email = isset($_SESSION['email']) && !$updateTheEmail ? $_SESSION['email'] : '';
+        }
+
+        //password validation
+        if($updateThePassword){
+            $password = isset($_POST["password"]) ? trim($_POST["password"]) : '';
+        } else {
+            $password = isset($_SESSION['password']) ? $_SESSION['password'] : '';
+        }
+
+        // no need to use
+        // $email = isset($_SESSION['email']) && !$updateTheEmail ? $_SESSION['email'] : (isset($_POST["email"]) ? trim(mb_strtolower($_POST["email"], 'UTF-8')) : '');
+        // $password = isset($_SESSION['password']) && !$updateThePassword ? $_SESSION['password'] : (isset($_POST["password"]) ? trim($_POST["password"]) : '');
 
         //validation
         $filtered_email = filter_var($email,FILTER_VALIDATE_EMAIL);
@@ -83,15 +102,35 @@ class UserService implements UserInterface{
         $hash_password = password_hash($password,PASSWORD_DEFAULT);
 
 
-        $data = [
-            "first_name" => $first_name,
-            "last_name" => $last_name,
-            "email" => $filtered_email,
-            "password" => $hash_password,
-        ];
+        if($updateTheEmail && $updateThePassword){
 
-        //storing data
-        $result = $this->db->storeUser($data);
+            $data = [
+                "first_name" => $first_name,
+                "last_name" => $last_name,
+                "email" => $filtered_email,
+                "password" => $hash_password,
+            ];
+            
+            //storing or updating data
+            $result = $this->db->storeUser($data);
+
+        } else {
+
+            //timestamp
+            $updated_at = date('m-d-Y H:i:s',time());
+
+            $data = [
+                "first_name" => $first_name,
+                "last_name" => $last_name,
+                "email" => $filtered_email,
+                "password" => $hash_password,
+                "updated_at" => $updated_at,
+            ];
+          
+            //storing or updating data
+            $result = $this->db->updateUser($data);
+        }
+
         // if storing data fail reutrn false
         if($result !== false){
             //security purpose
@@ -101,6 +140,12 @@ class UserService implements UserInterface{
             return false;
         }
 
+    }
+
+
+    public function update(){
+
+        return $this->register(updateTheEmail:false,updateThePassword:true);
     }
 }
 

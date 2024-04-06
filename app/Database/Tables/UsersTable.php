@@ -33,13 +33,13 @@ class UsersTable extends Table{
     }
 
     public function storeUser($data){
-
-        $query = "INSERT INTO users (first_name,last_name,email,password) VALUES ( :first_name, :last_name, :email, :password)";
+        
+        $query = "INSERT INTO users (first_name,last_name,email,password) VALUES (:first_name,:last_name,:email,:password);";
 
         $statement = $this->db->prepare($query);
 
         $result = parent::storeOrUpdate($this->db,$statement,$data);
-
+    
         return $result;
     }
 
