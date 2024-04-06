@@ -4,6 +4,14 @@ namespace App\Database\Tables;
 use App\Interface\DatabaseInterface;
 use PDOException;
 
+/**
+ * getAllPost
+ * getUserPost
+ * storeUserPost
+ * updateUserPost
+ * deleteUserPost
+ * 
+ */
 class PostsTable extends Table{
     private $db;
 
@@ -16,7 +24,8 @@ class PostsTable extends Table{
 
         try{
 
-            $query = "SELECT CONCAT(users.first_name, ' ', users.last_name) AS name, posts.* FROM posts INNER JOIN users ON users.id = posts.user_id";
+            $query = "SELECT (users.first_name || ' ' || users.last_name) AS name, 
+            posts.id, posts.body, posts.created_at FROM posts INNER JOIN users ON users.id = posts.user_id";
 
             $statement = $this->db->prepare($query);
     
@@ -25,10 +34,10 @@ class PostsTable extends Table{
             return $statement->fetchall();
 
         } catch (PDOException $e){
-
-        if($e->getMessage()){
-            return false;
-        }
+            
+            if($e->getMessage()){
+                return false;
+            }
        }
 
     }
@@ -53,23 +62,55 @@ class PostsTable extends Table{
 
     public function storeUserPost(array $data){
 
-        $query = "INSERT INTO posts (body,user_id) VALUES (:body,:user_id)";
+        try{
+            $query = "INSERT INTO posts (body,user_id) VALUES (:body,:user_id)";
 
-        $statement = $this->db->prepare($query);
+            $statement = $this->db->prepare($query);
 
-        $result = parent::storeOrUpdate($this->db,$statement,$data);
+            $result = parent::storeOrUpdate($this->db,$statement,$data);
 
-        return $result;
+            return $result;
+        } catch(PDOException $e){
+            if($e->getMessage()){
+                return false;
+            }
+        }
     }
 
     public function updateUserPost(array $data){
 
-        $query = "UPDATE posts SET body = :body WHERE id = :post_id AND user_id = :user_id";
+        try{
+            $query = "UPDATE posts SET body = :body WHERE id = :post_id AND user_id = :user_id";
 
-        $statement = $this->db->prepare($query);
+            $statement = $this->db->prepare($query);
+        
+            $result = parent::storeOrUpdate($this->db,$statement,$data);
 
-        $result = parent::storeOrUpdate($this->db,$statement,$data);
+            return $result;
+        } catch(PDOException $e){
+            if($e->getMessage()){
+                return false;
+            }
+        }
+    }
 
-        return $result;
+    public function deleteUserPost(array $id){
+
+        try{
+
+            $query = "DELETE FROM posts WHERE posts.id = :id";
+
+            $statement = $this->db->prepare($query);
+
+            $statement->execute($id);
+
+            return true;
+
+        } catch(PDOException $e)
+        {
+            if($e->getMessage()){
+                return false;
+            }
+        }
     }
 }

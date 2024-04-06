@@ -5,6 +5,14 @@ namespace App\Services;
 use App\Database\Tables\PostsTable;
 use App\Database\Drivers\SQLite;
 
+/**
+ * getAllPost       R
+ * getUserPost      R      
+ * storeUserPost    C
+ * updateUserPost   U  
+ * deletUserPost    D  
+ */
+
 class PostService
 {
 
@@ -85,5 +93,10 @@ class PostService
         } else {
             return false;
         }
+    }
+
+    public function deleteUserPost($id){
+
+        return $this->db->deleteUserPost(["id" => $id]);
     }
 }

@@ -15,6 +15,13 @@ use App\Database\Tables\UsersTable;
 use App\Database\MySQL;
 use App\Database\Drivers\SQLite;
 
+/**
+ * login        R
+ * logout       R
+ * register     C
+ * update       U
+ */
+
 class UserService implements UserInterface{
 
     private $db;
@@ -59,6 +66,7 @@ class UserService implements UserInterface{
     }
 
     public function logout(){
+
         unset($_SESSION['user']);
         unset($_SESSION['user_id']);
         unset($_SESSION['email']);
@@ -144,7 +152,7 @@ class UserService implements UserInterface{
 
     }
 
-
+    //update user info
     public function update(){
 
         return $this->register(updateTheEmail:false,updateThePassword:true);

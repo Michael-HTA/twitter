@@ -16,6 +16,18 @@ use App\Services\UserService;
 use App\Services\RedirectService;
 use App\Services\PostService;
 
+/**
+ * login_page
+ * login                R
+ * logout               R
+ * register_page
+ * register             C
+ * dashboard            R
+ * profile_page
+ * user_info_page   
+ * user_info_update     U
+ */
+
 class UserController{
     private $obj;
 
@@ -24,6 +36,7 @@ class UserController{
         $this->obj = new UserService();
     }
 
+    // login page
     public function index(){
         
         http_response_code(200);
@@ -31,6 +44,7 @@ class UserController{
 
     }
 
+    //login 
     public function login(){
 
         $user =$this->obj->login();
@@ -45,6 +59,7 @@ class UserController{
         }
     }
 
+    //register page
     public function add(){
 
         //respond header
@@ -52,6 +67,7 @@ class UserController{
         return view('/register');
     }
 
+    //register
     public function register(){
         
         $lastId = $this->obj->register();
@@ -67,6 +83,7 @@ class UserController{
         }
     }
 
+    //logout
     public function logout(){
 
         $isLogout =  $this->obj->logout();
@@ -74,16 +91,62 @@ class UserController{
         if($isLogout) RedirectService::redirect('/');
     }
 
+    //redirect after login and main page
     public function dashboard(){
 
-        http_response_code(200);
         $postService = new PostService();
+
+        //user's data
         $user = $this->obj->login();
-        $posts = $postService->getUserPost($user->id);
-        
+
+        // posts for new feed
+        $posts = $postService->getAllPost();
+
+        http_response_code(200);
+
         return view('/main',[
             'user' => $user,
             'posts' => $posts,
         ]);
+    }
+
+    //profile page for current user
+    public function profile(){
+
+        $post = new PostService();
+
+        $profile = $post->getUserPost($_SESSION['user_id']);
+
+        if($profile !== false){
+            //profile
+            http_response_code(200);    
+            return view('/profile',['profile' => $profile]);
+        } else {
+            http_response_code(503);
+            RedirectService::back();
+        }
+    }
+
+    //user's update
+    public function update(){
+        
+        $result = $this->obj->update();
+
+        if ($result !== false) {
+            // accepted no content
+            http_response_code(204);
+            RedirectService::redirect('/profile');
+        } else {
+
+            http_response_code(400);
+            RedirectService::back('error');
+        } 
+    }
+
+    // user data detail page
+    public function detail(){
+        //getting user data
+        $user = $this->obj->login();
+        return view('userDetail',['user' => $user]);
     }
 }

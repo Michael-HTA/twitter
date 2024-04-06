@@ -135,7 +135,7 @@
 					</div>
 
 					<!-- post -->
-					<?php for ($i = 0; $i < 1; $i++) { ?>
+					<?php foreach ($posts as $post) { ?>
 						<div class="row mt-3">
 							<div class="col-1">
 								<a href="/" class="me-2">
@@ -146,17 +146,17 @@
 								<div class="container-fluid p-0 m-0">
 									<div class="row">
 										<div class="col">
-											<div class="d-flex">
-												<p class="me-2"><?= $user->first_name ?></p>
-												<p><?= date('m-d-Y', strtotime($user->created_at)) ?></p>
+											<div class="d-flex justify-content-between">
+												<p class="me-2"><?= $post->name ?></p>
+												<p><?= date('Y-m-d', strtotime($post->created_at)) ?></p>
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-12">
-											<div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem ut doloremque,
-												amet laborum similique placeat sunt. Architecto tenetur laudantium excepturi,
-												provident quis itaque. Corrupti eum sapiente necessitatibus? Quos, alias expedita?</div>
+											<div>
+												<?= $post->body ?>
+											</div>
 										</div>
 									</div>
 									<div class="row">
@@ -175,20 +175,6 @@
 									</div>
 								</div>
 							</div>
-						</div>
-					<?php } ?>
-					<?php foreach ($posts as $post) { ?>
-						<div class="row mt-3">
-							<div class="col-4">
-								<?= $post->body ?>
-							</div>
-							<div class="col-4">
-								<?= $post->user_id ?>
-							</div>
-							<div class="col-4">
-								<?= date('Y-m-d', strtotime($post->created_at)) ?>
-							</div>
-
 						</div>
 					<?php } ?>
 					<div class="row">
