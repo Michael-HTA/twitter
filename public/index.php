@@ -12,7 +12,6 @@ include_once(__DIR__."/../vendor/autoload.php");
 use App\Controllers\RouteController;
 
 
-
 // phpinfo();
 // Format the current time
 // $created_at = date('m-d-Y H:i:s',time());

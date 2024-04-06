@@ -9,12 +9,13 @@ use PDO;
 use PDOException;
 
 class MySQL implements DatabaseInterface{
+
     private $db;
 
     public function __construct(
         // setting default values if user does not give parameter values
         private $dbhost = "localhost",
-        private $dbname = "twitter",
+        private $dbname = "project",
         private $dbuser = "root",
         private $dbpass = "",
     ) 
@@ -25,6 +26,7 @@ class MySQL implements DatabaseInterface{
     public function connect()
     {
         try {
+
             $this->db = new PDO(
                 "mysql:host=$this->dbhost;dbname=$this->dbname",
                 $this->dbuser,
