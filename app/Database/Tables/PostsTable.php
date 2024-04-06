@@ -13,13 +13,19 @@ class PostsTable extends Table{
     }
 
     public function getAllPost(){
-        $query = "SELECT * FROM posts";
 
-        $statement = $this->db->prepare($query);
-       try{
-        $statement->execute();
-        return $statement->fetchall();
-       } catch (PDOException $e){
+        try{
+
+            $query = "SELECT CONCAT(users.first_name, ' ', users.last_name) AS name, posts.* FROM posts INNER JOIN users ON users.id = posts.user_id";
+
+            $statement = $this->db->prepare($query);
+    
+    
+            $statement->execute();
+            return $statement->fetchall();
+
+        } catch (PDOException $e){
+
         if($e->getMessage()){
             return false;
         }
@@ -27,13 +33,16 @@ class PostsTable extends Table{
 
     }
 
+    //for profile page 
     public function getUserPost(array $id){
-        $query = "SELECT * FROM posts WHERE posts.user_id = :id ";
-
-        $statement = $this->db->prepare($query);
         try{
+            
+            $query = "SELECT * FROM posts WHERE posts.user_id = :id ";
+
+            $statement = $this->db->prepare($query);
             $statement->execute($id);
             return $statement->fetchall();
+
         } catch(PDOException $e){
             if($e->getMessage()){
                 return false;

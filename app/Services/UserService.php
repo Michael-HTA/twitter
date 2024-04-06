@@ -51,6 +51,7 @@ class UserService implements UserInterface{
             $_SESSION['email'] = $email;
             $_SESSION['password'] = $password;
             $_SESSION['user'] = $user->first_name;
+            $_SESSION['user_id'] = $user->id;
             return $user;
         } else {
             return false;
@@ -59,6 +60,7 @@ class UserService implements UserInterface{
 
     public function logout(){
         unset($_SESSION['user']);
+        unset($_SESSION['user_id']);
         unset($_SESSION['email']);
         unset($_SESSION['password']);
         unset($_SESSION['last_visit_uri']);
