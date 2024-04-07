@@ -28,15 +28,15 @@ class UserService implements UserInterface{
 
     public function __construct()
     {
-        // $db = new UsersTable(new MySQL());
+        // $this->db = new UsersTable(new MySQL());
         $this->db = new UsersTable(new SQLite());
     }
 
     public function login(){
 
-        /*
-            need to install the mb_string package
-        */
+        /**
+         * need to install the mb_string package
+         */
         $email = isset($_POST['email']) ? trim(mb_strtolower($_POST['email'], 'UTF-8')): $_SESSION['email'];
         $password = isset($_POST['password']) ? trim($_POST['password']): $_SESSION['password'];
         
@@ -71,7 +71,6 @@ class UserService implements UserInterface{
         unset($_SESSION['password']);
         unset($_SESSION['last_visit_uri']);
         session_destroy();
-        http_response_code(200);
         return TRUE;
     }
 

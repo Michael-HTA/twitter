@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\UserController;
+use App\Controllers\PostController;
 use App\Services\RouteService;
 
 RouteService::post('/login',UserController::class,'login')->middleware('guest');
@@ -11,3 +12,5 @@ RouteService::get('/register',UserController::class,'add')->middleware('guest');
 RouteService::post('/register', UserController::class,'register')->middleware('guest');
 
 RouteService::get('/profile', UserController::class,'profile')->middleware('user');
+RouteService::post('/post/add', PostController::class,'store')->middleware('user');
+RouteService::delete('/post/delete', PostController::class,'delete')->middleware('user');

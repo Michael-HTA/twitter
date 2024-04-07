@@ -95,8 +95,29 @@ class PostService
         }
     }
 
-    public function deleteUserPost($id){
+    public function deleteUserPost(){
+        
+        $user_id = isset($_POST['user_id']) ? trim($_POST['user_id']) : '';
+        $post_id = isset($_POST['post_id']) ? trim($_POST['post_id']) : '';
 
-        return $this->db->deleteUserPost(["id" => $id]);
+        // Check if required data is provided
+        if (empty($user_id) || empty($post_id) || !is_numeric($user_id) || !is_numeric($post_id) || $user_id <= 0 || $post_id <= 0) {
+            // Handle missing data error
+            return false;
+        }
+
+        $data = [
+            'user_id' => $user_id,
+            'post_id' => $post_id
+        ];
+        $result = $this->db->deleteUserPost($data);
+
+        if ($result !== false) {
+            // do something
+            session_regenerate_id();
+            return $result;
+        } else {
+            return false;
+        }
     }
 }

@@ -74,7 +74,7 @@ class UserController{
         
         // redirecting user
         if($lastId !== false && $lastId !== 0){
-            //respond if intended to use 201 return the data don't redirect, it won't work
+            //respond if intended to use 201 return the data, don't redirect, it won't work
             http_response_code(200);
             RedirectService::redirect(path:'/',prefix:'registered');
         } else {
