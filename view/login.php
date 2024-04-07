@@ -1,4 +1,4 @@
-<?php require("components/header.php") ?>
+<?php require("components/login/header.php") ?>
 
 
 
@@ -47,4 +47,4 @@
 
 
 
-<?php require("components/footer.php") ?>
+<?php require("components/login/footer.php") ?>

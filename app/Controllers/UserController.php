@@ -29,11 +29,11 @@ use App\Services\PostService;
  */
 
 class UserController{
-    private $obj;
+    private $userObj;
 
     public function __construct(){
 
-        $this->obj = new UserService();
+        $this->userObj = new UserService();
     }
 
     // login page
@@ -47,7 +47,7 @@ class UserController{
     //login 
     public function login(){
 
-        $user =$this->obj->login();
+        $user =$this->userObj->login();
 
         if($user !== false){
             //respond header
@@ -70,7 +70,7 @@ class UserController{
     //register
     public function register(){
         
-        $lastId = $this->obj->register();
+        $lastId = $this->userObj->register();
         
         // redirecting user
         if($lastId !== false && $lastId !== 0){
@@ -86,7 +86,7 @@ class UserController{
     //logout
     public function logout(){
 
-        $isLogout =  $this->obj->logout();
+        $isLogout =  $this->userObj->logout();
         http_response_code(200);
         if($isLogout) RedirectService::redirect('/');
     }
@@ -97,7 +97,7 @@ class UserController{
         $postService = new PostService();
 
         //user's data
-        $user = $this->obj->login();
+        $user = $this->userObj->login();
 
         // posts for new feed
         $posts = $postService->getAllPost();
@@ -112,15 +112,15 @@ class UserController{
 
     //profile page for current user
     public function profile(){
-
+       
         $post = new PostService();
+        $user = $this->userObj->login();
+        $posts = $post->getUserPost($user->id);
 
-        $profile = $post->getUserPost($_SESSION['user_id']);
-
-        if($profile !== false){
+        if($posts !== false && $user !== false){
             //profile
             http_response_code(200);    
-            return view('/profile',['profile' => $profile]);
+            return view('/profile',['posts' => $posts, 'user' => $user]);
         } else {
             http_response_code(503);
             RedirectService::back();
@@ -130,7 +130,7 @@ class UserController{
     //user's update
     public function update(){
         
-        $result = $this->obj->update();
+        $result = $this->userObj->update();
 
         if ($result !== false) {
             // accepted no content
@@ -146,7 +146,7 @@ class UserController{
     // user data detail page
     public function detail(){
         //getting user data
-        $user = $this->obj->login();
+        $user = $this->userObj->login();
         return view('userDetail',['user' => $user]);
     }
 }
