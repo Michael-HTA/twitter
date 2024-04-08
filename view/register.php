@@ -20,10 +20,10 @@
                 <a href="/" class="text-decoration-none text-black">Qwitter</a>
             </h1>
             <form action="/register" method="post">
-                <input type="name" name="first_name" class="form-control mb-2" placeholder="First name" required>
-                <input type="name" name="last_name" class="form-control mb-2" placeholder="Last name" required>
-                <input type="email" name="email" class="form-control mb-2" placeholder="Email" required>
-                <input type="password" name="password" class="form-control mb-2" placeholder="Password" required>
+                <input type="name" name="first_name" class="form-control mb-2" placeholder="First name" >
+                <input type="name" name="last_name" class="form-control mb-2" placeholder="Last name" >
+                <input type="email" name="email" class="form-control mb-2" placeholder="Email" >
+                <input type="password" name="password" class="form-control mb-2" placeholder="Password" >
                 <button type="submit" class="w-100 btn btn-lg btn-primary">
                     Sign Up
                 </button>

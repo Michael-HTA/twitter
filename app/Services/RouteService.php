@@ -60,6 +60,9 @@ class RouteService{
                     }
                 }
             }
+
+            //No matching Uri found
+            return 'not_found';
         }else{
             //If the incoming uri is not correct this will return
             return 'wrong_uri';

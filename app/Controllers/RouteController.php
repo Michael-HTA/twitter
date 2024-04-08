@@ -63,17 +63,15 @@ class RouteController{
                     http_response_code(403);
                     RedirectService::back('suspended');
                     break;
+                case 'not_found':
+                    http_response_code(404);
+                    RedirectService::redirect(prefix:'404');
+                    break;
             }
         //redirecting 404 route no uri registered
-        } elseif(is_null($route)){
-
-            http_response_code(404);
-            RedirectService::redirect(prefix:'404');
-
-        } else{
+        } elseif(isset($route) && !empty($route)){
             // rendering html page
             return HtmlRenderService::render($route);
-
         }
     }
 }
