@@ -42,14 +42,18 @@ class RouteController{
         AuthService::setUser();
 
         //recording last visited uri
-        if($this->routeHandler()) $this->lastVisitUri();
+        $result = $this->routeHandler();
+        if($result) {
+        $this->lastVisitUri();
+        HtmlRenderService::render($result);
+        }
         
     }
 
     public function routeHandler(){
 
         $route = $this->routeService->callCorrespondentController($this->getUrl(),$this->getHttpMethod());
-
+     
         //redirecting for error route
         if(is_string($route)){
             switch($route){
@@ -71,7 +75,7 @@ class RouteController{
         //redirecting 404 route no uri registered
         } elseif(isset($route) && !empty($route)){
             // rendering html page
-            return HtmlRenderService::render($route);
+            return $route;
         }
     }
 }

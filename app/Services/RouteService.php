@@ -3,7 +3,6 @@ namespace App\Services;
 
 class RouteService{
     public static $routes = [];
-    public static $instance = null;
 
     // allCorrespondentController() => version one
     // public function callCorrespondentController($request,$http_method){
@@ -87,11 +86,7 @@ class RouteService{
             'middleware' => null,
         ];
 
-        if(self::$instance){
-            return self::$instance;
-        } else {
-            return self::$instance = new self();
-        }
+        return new self();
     }
 
     public static function get($uri,$controller,$controller_method_name){
@@ -116,7 +111,7 @@ class RouteService{
 
     public static function middleware($middleware){
         self::$routes[array_key_last(self::$routes)]['middleware'] = $middleware;
-        return self::$instance;
+        return new self();
     }
 
 }
