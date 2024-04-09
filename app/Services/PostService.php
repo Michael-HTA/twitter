@@ -120,4 +120,10 @@ class PostService
             return false;
         }
     }
+
+    public function search(){
+            
+        $search = isset($_GET["search"])?$_GET["search"] : '';
+        return $this->db->search($search);
+    }
 }

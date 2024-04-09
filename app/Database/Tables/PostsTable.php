@@ -4,6 +4,7 @@ namespace App\Database\Tables;
 
 use App\Interface\DatabaseInterface;
 use PDOException;
+use PDO;
 
 /**
  * getAllPost
@@ -116,4 +117,19 @@ class PostsTable extends Table
             }
         }
     }
+
+    public function search($search){
+
+    $query = "SELECT body FROM posts WHERE body LIKE :search";
+        
+    $statement = $this->db->prepare($query);
+    
+    $searchTerm = '%'.$search.'%'; // Concatenating % around the search term
+    $statement->bindValue(':search', $searchTerm, PDO::PARAM_STR);
+
+
+    // $statement->execute();
+
+    return $statement->fetchAll();
+}
 }

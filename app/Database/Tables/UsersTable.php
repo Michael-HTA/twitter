@@ -6,6 +6,7 @@ namespace App\Database\Tables;
 // include_once(__DIR__."/../../vendor/autoload.php");
 use App\Interface\DatabaseInterface;
 use PDOException;
+use PDO;
 
 /**
  * findByEmailAndPassword   R
@@ -71,5 +72,20 @@ class UsersTable extends Table{
                 return false;
             }
         }
+    }
+
+    public function search( $search)
+    { 
+        $query = "SELECT (first_name || ' ' || last_name) AS name FROM users WHERE (first_name || ' ' || last_name) LIKE :search";
+    
+        $statement = $this->db->prepare($query);
+    
+        $searchTerm = '%'.$search.'%'; // Concatenating % around the search term
+        $statement->bindValue(':search', $searchTerm, PDO::PARAM_STR);
+
+
+        $statement->execute();
+    
+        return $statement->fetchAll();
     }
 }

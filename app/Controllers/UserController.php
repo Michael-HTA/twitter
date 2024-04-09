@@ -51,10 +51,10 @@ class UserController{
 
         if($user !== false){
             //respond header
-            http_response_code(200);
+           
             RedirectService::redirect(path:'/dashboard');
         } else {
-            http_response_code(401);
+            
             RedirectService::back('incorrect');
         }
     }
@@ -75,11 +75,11 @@ class UserController{
         // redirecting user
         if($lastId !== false && $lastId !== 0){
             //respond if intended to use 201 return the data, don't redirect, it won't work
-            http_response_code(200);
+            
             RedirectService::redirect(path:'/',prefix:'registered');
         } else {
-            http_response_code(400);
-            RedirectService::back('incorrect');
+            
+            RedirectService::redirect(path:'/register',prefix:'incorrect');
         }
     }
 
@@ -87,7 +87,6 @@ class UserController{
     public function logout(){
 
         $isLogout =  $this->userObj->logout();
-        http_response_code(200);
         if($isLogout) RedirectService::redirect('/');
     }
 
@@ -122,7 +121,6 @@ class UserController{
             http_response_code(200);    
             return view('/profile',['posts' => $posts, 'user' => $user]);
         } else {
-            http_response_code(503);
             RedirectService::back();
         }
     }
@@ -134,11 +132,9 @@ class UserController{
 
         if ($result !== false) {
             // accepted no content
-            http_response_code(204);
+            
             RedirectService::redirect('/profile');
         } else {
-
-            http_response_code(400);
             RedirectService::back('error');
         } 
     }

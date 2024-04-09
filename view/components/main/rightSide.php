@@ -4,8 +4,8 @@
                     <div class="row ">
                         <div class="col mt-2">
                             <div class="p-0 m-0 position-fixed me-3">
-                                <form class="d-flex border border-2 rounded-pill border-opacity-50" role="search">
-                                    <input class="form-control border border-0 rounded-start-4" type="search" placeholder="" aria-label="Search">
+                                <form class="d-flex border border-2 rounded-pill border-opacity-50" role="search" action="/search" method="get">
+                                    <input class="form-control border border-0 rounded-start-4" type="search" placeholder="" aria-label="Search" name="search">
                                     <button class="btn border search border-0 rounded-end-4" type="submit">Search</button>
                                 </form>
 
