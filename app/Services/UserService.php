@@ -41,10 +41,11 @@ class UserService implements UserInterface{
         $password = isset($_POST['password']) ? trim($_POST['password']): $_SESSION['password'];
         
         //email validation
-        $filtered_email = filter_var($email,FILTER_VALIDATE_EMAIL);
+        $sanitize_email = filter_var($email,FILTER_SANITIZE_EMAIL);
+        $filtered_email = filter_var($sanitize_email,FILTER_VALIDATE_EMAIL);
         
         //if email validation
-        if($filtered_email === false || empty($email) || empty($password)){
+        if($filtered_email === false || empty($email) || empty($password) || $sanitize_email !== $filtered_email || strlen($password) < 8){
             return false;
         }
 
@@ -94,15 +95,12 @@ class UserService implements UserInterface{
             $password = isset($_SESSION['password']) ? $_SESSION['password'] : '';
         }
 
-        // no need to use
-        // $email = isset($_SESSION['email']) && !$updateTheEmail ? $_SESSION['email'] : (isset($_POST["email"]) ? trim(mb_strtolower($_POST["email"], 'UTF-8')) : '');
-        // $password = isset($_SESSION['password']) && !$updateThePassword ? $_SESSION['password'] : (isset($_POST["password"]) ? trim($_POST["password"]) : '');
-
         //validation
-        $filtered_email = filter_var($email,FILTER_VALIDATE_EMAIL);
+        $sanitize_email = filter_var($email,FILTER_SANITIZE_EMAIL);
+        $filtered_email = filter_var($sanitize_email,FILTER_VALIDATE_EMAIL);
 
         //if email validation
-        if($filtered_email === false || empty($first_name) || empty($last_name) || empty($password)){ 
+        if($filtered_email === false || empty($first_name) || empty($last_name) || empty($password) || strlen($password) < 8 || $sanitize_email !== $filtered_email){ 
             return false;
         }
 

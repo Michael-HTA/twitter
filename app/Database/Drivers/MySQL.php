@@ -15,7 +15,7 @@ class MySQL implements DatabaseInterface{
     public function __construct(
         // setting default values if user does not give parameter values
         private $dbhost = "localhost",
-        private $dbname = "project",
+        private $dbname = "twitter",
         private $dbuser = "root",
         private $dbpass = "",
     ) 

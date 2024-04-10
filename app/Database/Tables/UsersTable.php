@@ -31,6 +31,8 @@ class UsersTable extends Table{
         if($user){
             if(password_verify($password, $user->password)){
                 return $user;
+            } else {
+                return false;
             }
         } else {
             return false;
@@ -67,7 +69,9 @@ class UsersTable extends Table{
             $result = parent::storeOrUpdate($this->db,$statement,$data);
 
             return $result;
+
         } catch( PDOException $e){
+            
             if($e->getMessage()){
                 return false;
             }
