@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Database\Tables\PostsTable;
 use App\Database\Drivers\SQLite;
+use App\Database\Drivers\MySQL;
 
 /**
  * getAllPost       R
@@ -20,7 +21,7 @@ class PostService
 
     public function __construct()
     {
-        $this->db = new PostsTable(new SQLite());
+        $this->db = new PostsTable(new MySQL());
     }
 
     public function getAllPost()
@@ -123,7 +124,9 @@ class PostService
 
     public function search(){
             
-        $search = isset($_GET["search"])?$_GET["search"] : '';
+        $search = isset($_GET["search"])? $_GET["search"] : '';
+        
         return $this->db->search($search);
+
     }
 }

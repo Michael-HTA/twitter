@@ -12,7 +12,7 @@ ini_set('display_errors',1);
 
 use App\Interface\UserInterface;
 use App\Database\Tables\UsersTable;
-use App\Database\MySQL;
+use App\Database\Drivers\MySQL;
 use App\Database\Drivers\SQLite;
 
 /**
@@ -29,7 +29,7 @@ class UserService implements UserInterface{
     public function __construct()
     {
         // $this->db = new UsersTable(new MySQL());
-        $this->db = new UsersTable(new SQLite());
+        $this->db = new UsersTable(new MySQL());
     }
 
     public function login(){
@@ -157,7 +157,7 @@ class UserService implements UserInterface{
 
     public function search(){
             
-        $search = isset($_GET["search"])?$_GET["search"] : '';
+        $search = isset($_GET["search"])? $_GET["search"] : '';
         return $this->db->search($search);
 
     }

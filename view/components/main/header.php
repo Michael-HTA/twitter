@@ -45,6 +45,10 @@
         .top {
             height: 50px;
         }
+
+        #box2 {
+            display: none;
+        }
     </style>
 </head>
 

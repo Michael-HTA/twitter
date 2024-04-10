@@ -71,7 +71,7 @@ class UserController{
     public function register(){
         
         $lastId = $this->userObj->register();
-        
+        // die('message: ' . $lastId);
         // redirecting user
         if($lastId !== false && $lastId !== 0){
             //respond if intended to use 201 return the data, don't redirect, it won't work

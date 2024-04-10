@@ -30,7 +30,7 @@ class Table{
             }
 
             if($e->getMessage()) {
-                return false;
+                return $e->getMessage();
             }
         }
     }

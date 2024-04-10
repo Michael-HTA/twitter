@@ -27,9 +27,14 @@ class PostsTable extends Table
     {
 
         try {
+            //sqlite
+            // $query = "SELECT (users.first_name || ' ' || users.last_name) AS name, 
+            // posts.id, posts.body, posts.created_at FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY posts.created_at DESC";
 
-            $query = "SELECT (users.first_name || ' ' || users.last_name) AS name, 
-            posts.id, posts.body, posts.created_at FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY posts.created_at DESC";
+            // maria or mysql
+            $query = "SELECT CONCAT(users.first_name, ' ', users.last_name) AS name, posts.id, posts.body, 
+            posts.created_at FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY posts.created_at DESC";
+
 
             $statement = $this->db->prepare($query);
 
@@ -119,16 +124,20 @@ class PostsTable extends Table
     }
 
     public function search($search){
+        
+    // $query = "SELECT body FROM posts WHERE body LIKE :search";
 
-    $query = "SELECT body FROM posts WHERE body LIKE :search";
+    $query = "SELECT CONCAT(users.first_name, ' ', users.last_name) AS user_name, posts.id, 
+                posts.body, posts.created_at FROM posts INNER JOIN users ON users.id = posts.user_id 
+                WHERE posts.body LIKE :search ORDER BY posts.created_at DESC";
         
     $statement = $this->db->prepare($query);
     
     $searchTerm = '%'.$search.'%'; // Concatenating % around the search term
+    
     $statement->bindValue(':search', $searchTerm, PDO::PARAM_STR);
 
-
-    // $statement->execute();
+    $statement->execute();
 
     return $statement->fetchAll();
 }

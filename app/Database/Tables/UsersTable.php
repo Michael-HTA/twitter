@@ -75,9 +75,14 @@ class UsersTable extends Table{
     }
 
     public function search( $search)
-    { 
-        $query = "SELECT (first_name || ' ' || last_name) AS name FROM users WHERE (first_name || ' ' || last_name) LIKE :search";
+    {   
+        //sqlite
+        // $query = "SELECT (first_name || ' ' || last_name) AS name FROM users WHERE (first_name || ' ' || last_name) LIKE :search";
     
+        //mysql or maria
+        $query = "SELECT CONCAT(first_name, ' ', last_name) AS name FROM users 
+        WHERE CONCAT(first_name, ' ', last_name) LIKE :search";
+        
         $statement = $this->db->prepare($query);
     
         $searchTerm = '%'.$search.'%'; // Concatenating % around the search term
