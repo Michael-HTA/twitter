@@ -5,7 +5,7 @@ class RedirectService{
     
     private static $base_uri = 'http://localhost';
 
-    public static function redirect($path = null, $prefix= null, $query = null){
+    public static function redirect($path = null, $prefix= null, $query = null, $code = 0){
 
         $uri = self::$base_uri.$path;
         
@@ -16,7 +16,7 @@ class RedirectService{
                 $uri .= "=$encode";
             }
         }
-        header("location: $uri");
+        header("location: $uri",response_code:$code);
         exit();
 
     }

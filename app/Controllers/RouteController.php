@@ -34,7 +34,11 @@ class RouteController{
     }
 
     public function start(){
-
+        $startMemory = memory_get_usage();
+        echo 'This is start memory' . round($startMemory/1024) . '</br>';
+        $startPeak = memory_get_peak_usage();
+        echo 'This is start peak memory' . round($startPeak/1024) . '</br>';
+        
         // setting time zone
         date_default_timezone_set('Asia/Yangon');
 
@@ -44,10 +48,15 @@ class RouteController{
         //recording last visited uri
         $result = $this->routeHandler();
         if($result) {
-        $this->lastVisitUri();
-        HtmlRenderService::render($result);
+            $this->lastVisitUri();
+            HtmlRenderService::render($result);
         }
         
+        
+        $endMemory = memory_get_usage();
+        echo 'This is end memory' . round($endMemory/1024) . '</br>';
+        $endPeak = memory_get_peak_usage();
+        echo 'This is start peak memory' . round($endPeak/1024) . '</br>';
     }
 
     public function routeHandler(){
@@ -69,7 +78,7 @@ class RouteController{
                     break;
                 case 'not_found':
                     http_response_code(404);
-                    RedirectService::redirect(prefix:'404');
+                    return view('/404');
                     break;
             }
         //redirecting 404 route no uri registered
