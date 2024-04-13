@@ -43,9 +43,8 @@ class PostsTable extends Table
             return $statement->fetchall();
         } catch (PDOException $e) {
 
-            if ($e->getMessage()) {
-                return false;
-            }
+            error_log(date('[Y-m-d H:i:s]') . "Error at delete post table: ". $e->getMessage() . "\n",3,'/var/www/html/logs/twitter-error.log');
+            return false;
         }
     }
 
@@ -60,46 +59,34 @@ class PostsTable extends Table
             $statement->execute($id);
             return $statement->fetchall();
         } catch (PDOException $e) {
-            if ($e->getMessage()) {
-                return false;
-            }
+
+            error_log(date('[Y-m-d H:i:s]') . "Error at delete post table: ". $e->getMessage() . "\n",3,'/var/www/html/logs/twitter-error.log');
+            return false;
         }
     }
 
     public function storeUserPost(array $data)
     {
 
-        try {
-            $query = "INSERT INTO posts (body,user_id) VALUES (:body,:user_id)";
+        $query = "INSERT INTO posts (body,user_id) VALUES (:body,:user_id)";
 
-            $statement = $this->db->prepare($query);
+        $statement = $this->db->prepare($query);
 
-            $result = parent::storeOrUpdate($this->db, $statement, $data);
+        $result = parent::storeOrUpdate($this->db, $statement, $data);
 
-            return $result;
-        } catch (PDOException $e) {
-            if ($e->getMessage()) {
-                return false;
-            }
-        }
+        return $result;
     }
 
-    public function updateUserPost(array $data)
-    {
+    public function updateUserPost(array $data){
 
-        try {
-            $query = "UPDATE posts SET body = :body WHERE id = :post_id AND user_id = :user_id";
+        $query = "UPDATE posts SET body = :body WHERE id = :post_id AND user_id = :user_id";
 
-            $statement = $this->db->prepare($query);
+        $statement = $this->db->prepare($query);
 
-            $result = parent::storeOrUpdate($this->db, $statement, $data);
+        $result = parent::storeOrUpdate($this->db, $statement, $data);
 
-            return $result;
-        } catch (PDOException $e) {
-            if ($e->getMessage()) {
-                return false;
-            }
-        }
+        return $result;
+       
     }
 
     public function deleteUserPost(array $data)
@@ -117,9 +104,8 @@ class PostsTable extends Table
 
         } catch (PDOException $e) {
 
-            if ($e->getMessage()) {
-                return false;
-            }
+            error_log(date('[Y-m-d H:i:s]') . "Error at delete post table: ". $e->getMessage() . "\n",3,'/var/www/html/logs/twitter-error.log');
+            return false;
         }
     }
 

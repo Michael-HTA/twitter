@@ -34,10 +34,10 @@ class RouteController{
     }
 
     public function start(){
-        $startMemory = memory_get_usage();
-        echo 'This is start memory' . round($startMemory/1024) . '</br>';
-        $startPeak = memory_get_peak_usage();
-        echo 'This is start peak memory' . round($startPeak/1024) . '</br>';
+        // $startMemory = memory_get_usage();
+        // echo 'This is start memory' . round($startMemory/1024) . '</br>';
+        // $startPeak = memory_get_peak_usage();
+        // echo 'This is start peak memory' . round($startPeak/1024) . '</br>';
         
         // setting time zone
         date_default_timezone_set('Asia/Yangon');
@@ -53,10 +53,10 @@ class RouteController{
         }
         
         
-        $endMemory = memory_get_usage();
-        echo 'This is end memory' . round($endMemory/1024) . '</br>';
-        $endPeak = memory_get_peak_usage();
-        echo 'This is start peak memory' . round($endPeak/1024) . '</br>';
+        // $endMemory = memory_get_usage();
+        // echo 'This is end memory' . round($endMemory/1024) . '</br>';
+        // $endPeak = memory_get_peak_usage();
+        // echo 'This is start peak memory' . round($endPeak/1024) . '</br>';
     }
 
     public function routeHandler(){

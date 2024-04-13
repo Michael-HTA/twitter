@@ -40,42 +40,30 @@ class UsersTable extends Table{
     }
 
     public function storeUser($data){
-        try{    
-            $query = "INSERT INTO users (first_name,last_name,email,password) VALUES (:first_name,:last_name,:email,:password);";
+          
+        $query = "INSERT INTO users (first_name,last_name,email,password) VALUES (:first_name,:last_name,:email,:password);";
 
-            $statement = $this->db->prepare($query);
+        $statement = $this->db->prepare($query);
 
-            $result = parent::storeOrUpdate($this->db,$statement,$data);
-        
-            return $result;
-        } catch( PDOException $e){
-                if($e->getMessage()){
-                    return false;
-                }
-            }
+        $result = parent::storeOrUpdate($this->db,$statement,$data);
+    
+        return $result;
     }               
 
     public function updateUser($data){
 
-        try{
-            $query = "UPDATE users set first_name = :first_name,
-                                    last_name = :last_name,
-                                    email = :email,
-                                    password = :password
-                                    WHERE id = :id";
-        
-            $statement = $this->db->prepare($query);
+        $query = "UPDATE users set first_name = :first_name,
+                                last_name = :last_name,
+                                email = :email,
+                                password = :password
+                                WHERE id = :id";
+    
+        $statement = $this->db->prepare($query);
 
-            $result = parent::storeOrUpdate($this->db,$statement,$data);
+        $result = parent::storeOrUpdate($this->db,$statement,$data);
 
-            return $result;
+        return $result;
 
-        } catch( PDOException $e){
-            
-            if($e->getMessage()){
-                return false;
-            }
-        }
     }
 
     public function search( $search)

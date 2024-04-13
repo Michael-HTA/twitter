@@ -77,7 +77,7 @@ class UserController{
             
             RedirectService::redirect(path:'/',prefix:'registered');
         } else {
-            RedirectService::back('incorrect');
+            RedirectService::redirect(path:'/register',prefix:'incorrect');
         }
     }
 

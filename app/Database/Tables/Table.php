@@ -29,9 +29,8 @@ class Table{
                 $db->rollBack();
             }
 
-            if($e->getMessage()) {
-                return $e->getMessage();
-            }
+            error_log(date('[Y-m-d H:i:s]') . "Error at store or update: ". $e->getMessage() . "\n",3,'/var/www/html/logs/twitter-error.log');
+            return false;
         }
     }
 }
