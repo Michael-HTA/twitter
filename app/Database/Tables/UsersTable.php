@@ -85,4 +85,12 @@ class UsersTable extends Table{
     
         return $statement->fetchAll();
     }
+
+    public function updateProfile($data){
+        $query = "UPDATE users set photo = :photo WHERE id = :id";
+
+        $statement = $this->db->prepare($query);
+
+        return parent::storeOrUpdate($this->db,$statement,$data);
+    }
 }

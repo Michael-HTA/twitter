@@ -48,8 +48,10 @@ class RouteController{
         //recording last visited uri
         $result = $this->routeHandler();
         if($result) {
+
             $this->lastVisitUri();
             HtmlRenderService::render($result);
+            die();
         }
         
         
@@ -69,12 +71,12 @@ class RouteController{
                 // 404 but not 404 user error
                 case 'wrong_uri':
                     http_response_code(404);
-                    RedirectService::redirect(prefix:'404');
+                    return view('/404');
                     break;
                 case 'not_auth':
                     //forbidden route
                     http_response_code(403);
-                    RedirectService::back('suspended');
+                    return view('/forbidden');
                     break;
                 case 'not_found':
                     http_response_code(404);

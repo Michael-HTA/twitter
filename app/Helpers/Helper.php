@@ -53,3 +53,7 @@ return $timeAgo;
 
 
 }
+
+function imageUri($data){
+    return 'http://localhost/files/get?photo=' . $data;
+}

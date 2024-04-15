@@ -32,7 +32,7 @@ class PostsTable extends Table
             // posts.id, posts.body, posts.created_at FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY posts.created_at DESC";
 
             // maria or mysql
-            $query = "SELECT CONCAT(users.first_name, ' ', users.last_name) AS name, posts.id, posts.body, 
+            $query = "SELECT CONCAT(users.first_name, ' ', users.last_name) AS name, users.photo , posts.id, posts.body, 
             posts.created_at FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY posts.created_at DESC";
 
 
@@ -43,7 +43,7 @@ class PostsTable extends Table
             return $statement->fetchall();
         } catch (PDOException $e) {
 
-            error_log(date('[Y-m-d H:i:s]') . "Error at delete post table: ". $e->getMessage() . "\n",3,'/var/www/html/logs/twitter-error.log');
+            error_log(date('[Y-m-d H:i:s]') . "Error at all post: ". $e->getMessage() . "\n",3,'/var/www/html/logs/twitter-error.log');
             return false;
         }
     }
@@ -60,7 +60,7 @@ class PostsTable extends Table
             return $statement->fetchall();
         } catch (PDOException $e) {
 
-            error_log(date('[Y-m-d H:i:s]') . "Error at delete post table: ". $e->getMessage() . "\n",3,'/var/www/html/logs/twitter-error.log');
+            error_log(date('[Y-m-d H:i:s]') . "Error at user post: ". $e->getMessage() . "\n",3,'/var/www/html/logs/twitter-error.log');
             return false;
         }
     }

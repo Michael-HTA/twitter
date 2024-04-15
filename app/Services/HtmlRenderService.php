@@ -40,6 +40,9 @@ class HtmlRenderService{
                 ${$key} = self::arrayToObjectRecursive($value);
             }
         }
+        
+        //TO UPDATE SESSION DATA 
+        // header('refresh'); infinity looping
 
         //logic to render HTML from the file and data goes here
         require_once(__DIR__.$fileBasePath.$fileName.'.php');

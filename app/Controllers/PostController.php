@@ -20,10 +20,10 @@ class PostController
 
         if ($this->PostService->storeUserPost() !== false) {
             http_response_code(200);
-            RedirectService::back('success');
+            RedirectService::redirect(path:'/dashboard',prefix:'success');
         } else {
             http_response_code(400);
-            RedirectService::back('error');
+            RedirectService::redirect(path:'/dashboard',prefix:'error');
         }
     }
 
@@ -31,10 +31,10 @@ class PostController
 
         if ($this->PostService->deleteUserPost() !== false) {
             http_response_code(200);
-            RedirectService::back('success');
+            RedirectService::redirect(path:'/profile',prefix:'success');
         } else {
             http_response_code(400);
-            RedirectService::back('error');
+            RedirectService::redirect(path:'/profile',prefix:'error');
         }
     }
 }

@@ -159,5 +159,9 @@ class UserService implements UserInterface{
         return $this->db->search($search);
 
     }
+
+    public function updateProfile($photo,$id){
+        return $this->db->updateProfile(['photo'=>$photo, 'id'=>$id]);
+    }
 }
 
